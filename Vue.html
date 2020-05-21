@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<script src="vue.js"></script>
+	<script src="vue-router.js"></script>
+	<script src="vuex.js"></script>
+</head>
+
+<body>
+<div id="app">
+	<router-link v-bind:to="{name: 'one'}">One</router-link>
+	<router-link v-bind:to="{name: 'one-1'}">One-1</router-link>
+	<router-link to="/two">Two</router-link>
+	<router-view name="a"></router-view>
+	<router-view></router-view>
+</div>
+<script type="text/javascript">
+one = {
+    template: `<h3>One<router-view></router-view></h3>`
+}
+two = {
+    template: `<h3>Two{{name}}</h3>`,
+	props: ["name"]
+}
+one1 = {template: `<h3>One-1</h3>`}
+
+const router = new VueRouter({
+  routes: [
+	    {
+		    path: "/one", 
+			name: "one",
+			components: {
+			    a: one,
+				default: two
+			},
+			children: [
+			    {
+				    path: "one-1",
+					name: "one-1",
+					component: one1
+				}
+			]
+		},
+	    {path: "/two", component: two, props: {name: "hello"}}
+	]
+})
+new Vue({
+    el: "#app",
+	router: router,
+	mounted: function(){console.log(this.$route)}
+})
+</script>
+</body>
+</html>
