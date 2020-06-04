@@ -1,12 +1,99 @@
-<html>
-    <head>
-        <style>
-            body {
-                background-color: #f7f7f7;
-            }
-        </style>
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="en" style="font-size: 20px;">
 
-    </body>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./css/index.css">
+	<title>荆棘之旅</title>
+</head>
+
+<body>
+	<div class="content">
+	<div class="blog-title">荆棘之旅</div>
+	<div id="app">
+		<div class="nav">
+			<router-link to="/tags" v-on:click.native="gg">首页</router-link>
+			<router-link to="/fe">前端</router-link>
+		    <router-link to="/math">数学</router-link>
+			<router-link to="/music">乐理</router-link>
+		</div>
+		<div class="body">
+			<ul>
+				<template v-for="tags in articleList">
+				<li v-for="item in tags">
+					<a href="item.path">{{item.name}}</a>
+				</li>
+			    </template>
+			</ul>
+			<router-view></router-view>
+		</div>
+	</div>
+    </div>
+</body>
+<script src="./js/vue.js"></script>
+<script src="./js/vue-router.js"></script>
+<script src="./fe/index.js"></script>
+<script src="./math/index.js"></script>
+<script src="./music/index.js"></script>
+<script src="./tags/index.js"></script>
+
+<script>
+	//const one = { template: feIndex }
+	function otherMenu(data){
+		console.log(data)
+	}
+
+	const router = new VueRouter({
+		routes: [
+		    {
+				path: "/tags",
+				name: "tags",
+				//component: tagsIndex
+			},
+			{
+				path: "/fe",
+				name: "fe",
+				//component: feIndex
+			},
+			{
+				path: "/math",
+				name: "math",
+				//component: mathIndex
+			},
+			{
+				path: "/music",
+				name: "music",
+				//component: musicIndex
+			},
+		]
+	})
+	new Vue({
+		el: "#app",
+		router: router,
+		data: function(){
+			return {
+				articleList: [],
+				page: 1,
+				pages: 100
+			}
+		},
+		computed: {
+			aa: function(){
+				return window.location.hash
+			}
+		},
+		methods: {
+			gg(){
+				console.log(3333)
+				this.articleList = feData
+			}
+		},
+		mounted: function(){this.gg()}
+	})
+
+
+</script>
+
+
 </html>
