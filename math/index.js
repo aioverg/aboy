@@ -1,8 +1,42 @@
-const mathIndex = {
-    template: `
-    <div>
-    <p>数学</p>
-    <p>数学</p>
-    </div>
-    `
+const mathTags = [
+    "Python",
+    "statistics",
+]
+
+
+
+
+
+
+
+
+const mathCatalog = {
+    css:[
+        {
+            name: "777",
+            path: "www.baidu.com"
+        },
+        {
+            name: "888",
+            path: "www.baidu.com"
+        },
+        {
+            name: "999",
+            path: "www.baidu.com"
+        },
+    ],
+    javascript: [
+        {
+            name: "1010",
+            path: "www.baidu.com"
+        },
+        {
+            name: "1111",
+            path: "www.baidu.com"
+        },
+        {
+            name: "1212",
+            path: "www.baidu.com"
+        },
+    ]
 }

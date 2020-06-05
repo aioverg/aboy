@@ -6,6 +6,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="./css/index.css">
 	<title>荆棘之旅</title>
+	<style>
+		.tags-class ul {
+			padding: 20px 20px 0;
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap-reverse;
+		}
+		.tags-class li {
+			display: inline-block;
+			margin: 0 10px 10px 0;
+		}
+		.tags-class li a {
+			font-size: 14px;
+			color: #c0bfbf;
+		}
+		.tags-class li a:hover {
+			color: red;
+		}
+	</style>
 </head>
 
 <body>
@@ -13,20 +32,23 @@
 	<div class="blog-title">荆棘之旅</div>
 	<div id="app">
 		<div class="nav">
-			<router-link to="/tags" v-on:click.native="gg">首页</router-link>
-			<router-link to="/fe">前端</router-link>
-		    <router-link to="/math">数学</router-link>
-			<router-link to="/music">乐理</router-link>
+			<router-link to="/" v-on:click.native="menu('tags')">首页</router-link>
+			<router-link to="/fe" v-on:click.native="menu('fe')">前端</router-link>
+		    <router-link to="/math" v-on:click.native="menu('math')">数学</router-link>
+			<router-link to="/music" v-on:click.native="menu('music')">乐理</router-link>
+		</div>
+		<div class="menu-tags">
+			<span class="menu-tag" :class="selTag==index?'red':null" v-for="(tagName, index) in menuTags" @click="tag(tagName, index)">{{tagName}}</span>
 		</div>
 		<div class="body">
 			<ul>
-				<template v-for="tags in articleList">
-				<li v-for="item in tags">
-					<a href="item.path">{{item.name}}</a>
+				<li v-for="item in articleList">
+					<a :href="item.path">{{item.name}}</a>
 				</li>
 			    </template>
 			</ul>
-			<router-view></router-view>
+			<button @click="nextPage">下一页</button>
+			<button @click="prePage">上一页</button>
 		</div>
 	</div>
     </div>
@@ -47,7 +69,7 @@
 	const router = new VueRouter({
 		routes: [
 		    {
-				path: "/tags",
+				path: "/",
 				name: "tags",
 				//component: tagsIndex
 			},
@@ -74,22 +96,83 @@
 		data: function(){
 			return {
 				articleList: [],
-				page: 1,
-				pages: 100
-			}
-		},
-		computed: {
-			aa: function(){
-				return window.location.hash
+				menuName: null,
+				menuTags: [],
+				tagName: null,
+				selTag: 0,
+				page: 0,
+				pages: 100,
+				
 			}
 		},
 		methods: {
-			gg(){
-				console.log(3333)
-				this.articleList = feData
+			tag(name, index){
+				this.selTag = index
+				this.tagName = name
+				let sum = this.menuName[name].length
+				this.pages = Math.ceil(sum/10)
+				this.page +=1 
+				this.articleList = this.menuName[name].slice(0,10)
+			},
+			nextPage(){
+				console.log(this.page)
+				if(this.page >= this.pages){
+					alert("最后一页")
+					return
+				}
+				this.articleList = this.menuName[this.tagName].slice(10*this.page, 10+10*this.page)
+				this.page += 1
+			},
+			prePage(){
+				console.log(this.page)
+				if(this.page <= 1){
+					alert("第一页")
+					return
+				}
+				this.page -= 1
+				this.articleList = this.menuName[this.tagName].slice(10*this.page-10, 10*this.page)
+				
+			},
+			menu(name){
+				if(name == "fe"){
+					this.menuName = feCatalog
+					this.menuTags = feTags
+					return
+				}
+				if(name == "math"){
+					this.menuName = mathCatalog
+					this.menuTags = mathTags
+					return
+				}
+				if(name == "music"){
+					this.menuName = musicCatalog
+					this.menuTags = musicTags
+					return
+				}
+				
 			}
 		},
-		mounted: function(){this.gg()}
+		mounted: function(){
+			if(window.location.hash == '#/' || window.location.hash == '#/tags'){
+				return
+			}
+			this.tags = null
+			if(window.location.hash == '#/fe'){
+				this.menu('fe')
+				this.tag(this.menuTags[0], 0)
+				return
+			}
+			if(window.location.hash == '#/math'){
+				this.menu('math')
+				this.tag(this.menuTags[0], 0)
+				return
+			}
+			if(window.location.hash == '#/music'){
+				this.menu('music')
+				this.tag(this.menuTags[0], 0)
+				return
+			}
+		}
 	})
 
 

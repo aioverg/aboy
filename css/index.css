@@ -27,6 +27,25 @@ a {
 .nav a {
     padding: 10px;
 }
+.menu-tags {
+    margin: 10px 0;
+    display: flex;
+	justify-content: center;
+    flex-wrap: wrap-reverse;
+    cursor: pointer;
+}
+.menu-tags .red {
+    color: red;
+}
+.menu-tag {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    font-size: 14px;
+	color: #c0bfbf;
+}
+.menu-tag:hover {
+    color: red;
+}
 .body ul {
     list-style-type: none
 }
