@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>03 - 计量单位、关键字、函数</title></head>
+<body><h4>计量单位、关键字、函数</h4>
+<h5>长度单位</h5>
+<ol start='' >
+<li><p><strong>文本相对长度单位</strong></p>
+<p><code>em</code>：相对于父容器的字体尺寸，浏览器默认字体大小是16px。</p>
+<p><code>ex</code>：相对于父容器的字体高度的一半。</p>
+<p><code>ch</code>：相对于父容器的字体宽度的一半。</p>
+<p><code>rem</code>：相对于根元素<code>&lt;html&gt;</code>的字体尺寸。</p>
+</li>
+<li><p><strong>视口相对长队单位</strong></p>
+<p><code>vw</code>：相对于视口的宽度。视口宽度总是等于<code>100vm</code>。</p>
+<p><code>vh</code>：相对于视口的高度。视口宽度总是等于<code>100vh</code>。</p>
+<p><code>vmax</code>：相对于视口的高度或宽度中最大的那个，视口的高度或宽度总是等于<code>100vmax</code>，如视口的高度为<code>100px</code>，宽度为<code>200px</code>，则<code>100vmax=200px</code>。</p>
+<p><code>vmin</code>：相对于视口的高度或宽度中最小的那个，视口的高度或宽度总是等于<code>100vmax</code>，如视口的高度为<code>100px</code>，宽度为<code>200px</code>，则<code>100vmax=100px</code>。</p>
+</li>
+<li><p><strong>绝对长度单位</strong></p>
+<p><code>cm</code>：厘米</p>
+<p><code>mm</code>：毫米</p>
+<p><code>q</code>：1/4毫米</p>
+<p><code>in</code>：英寸</p>
+<p><code>pt</code>：点</p>
+<p><code>pc</code>：派卡</p>
+<p><code>px</code>：像素，像素的长度是固定的。</p>
+<p>换算关系：<code>1in = 2.54cm = 25.4 mm = 72pt = 6pc = 96px</code></p>
+</li>
+
+</ol>
+<h5>角度单位</h5>
+<ul>
+<li><code>deg</code>：度，<code>π = 180deg</code></li>
+<li><code>grad</code>：梯度，<code>π = 200grad</code></li>
+<li><code>rad</code>：弧度，<code>2π rad = 360deg</code></li>
+<li><code>turn</code>：转，<code>2π = 1 turn</code></li>
+<li>换算关系：<code>90deg = 100grad = 0.25turn ≈ 1.570796326794897rad</code></li>
+
+</ul>
+<h5>时间</h5>
+<ul>
+<li><code>s</code>：秒</li>
+<li><code>ms</code>：毫秒</li>
+<li>换算关系：<code>1s = 1000ms</code></li>
+
+</ul>
+<h5>频率</h5>
+<ul>
+<li><code>Hz</code>：赫兹，一秒钟内完成的周期个数</li>
+<li><code>kHz</code>：千赫兹</li>
+<li>换算关系：<code>1kHz = 1000Hz</code></li>
+
+</ul>
+<h5>分辨率</h5>
+<ul>
+<li><code>dpi</code>：每英寸包含点的数量。</li>
+<li><code>dpcm</code>：每厘米包含点的数量。</li>
+<li><code>dppx</code>：每像素包含点的数量。</li>
+
+</ul>
+<h5>颜色</h5>
+<ul>
+<li><p><code>HEX</code>：十六进制记法，取值<code>#RRGGBB</code>，<code>RR红色</code>、<code>GG绿色</code>、<code>BB蓝色</code>的取值范围为<code>00 ~ FF</code>。</p>
+</li>
+<li><p><code>RGB</code>：<code>RGB</code>记法，取值<code>rgb(R, G ,B)</code>，<code>R红色</code>、<code>G绿色</code>、<code>B蓝色</code>的取值范围为<code>0 ~ 255</code>或<code>0.0% ~ 100%</code>。</p>
+</li>
+<li><p><code>RGBA</code>：<code>RGBA</code>记法，取值<code>rgba(R, G, B, A)</code>，<code>R红色</code>、<code>G绿色</code>、<code>B蓝色</code>的取值范围为<code>0 ~ 255</code>或<code>0.0% ~ 100%</code>；<code>A</code>指透明度，取值范围为<code>0 ~ 1</code>。</p>
+</li>
+<li><p><code>HSL</code>：<code>HSL</code>记法，取值<code>hsl(H, S, L)</code>，<code>H色调</code>的取值范围为<code>0 ~ 360</code>；<code>S饱和度</code>取值范围为<code>0.0% ~ 100.0%</code>；<code>L亮度</code>取值范围为<code>0.0% ~ 100.0%</code>。</p>
+</li>
+<li><p><code>HSLA</code>：<code>HSLA</code>记法，取值<code>hsl(H, S, L, A)</code>，<code>H色调</code>的取值范围为<code>0 ~ 360</code>；<code>S饱和度</code>取值范围为<code>0.0% ~ 100.0%</code>；<code>L亮度</code>取值范围为<code>0.0% ~ 100.0%</code>；<code>A</code>指透明度，取值范围为<code>0 ~ 1</code>。</p>
+</li>
+<li><p><code>transparent</code>：全套明黑色的速记法。与<code>rgba(0, 0, 0, 0)</code>效果相同。</p>
+</li>
+<li><p><code>currentColor</code>：表示<code>color</code>属性的值，若用在自身上，即<code>color: currentColor</code>，则相当于是<code>color: inherit</code>。注意在<code>border-color</code>属性中，属性的默认值为<code>color</code>属性的值，所以</p>
+<pre><code class='language-css' lang='css'>p {
+    border: 1px solid;
+    color: red;
+}
+</code></pre>
+<p>会得到一个红色的边框。</p>
+</li>
+
+</ul>
+<h5>百分比</h5>
+<ul>
+<li><code>%</code>：情况不定，暂略。</li>
+
+</ul>
+<h5>关键字</h5>
+<ul>
+<li><code>inherit</code>：指定一个属性从父元素继承它的值。</li>
+<li><code>initial</code>：设置一个属性的值为默认值，即不会继承父元素的值。</li>
+<li><code>!important</code>：标注有<code>!important</code>的属性不会被覆盖。</li>
+
+</ul>
+<h5>函数</h5>
+<ul>
+<li><p><code>calc()</code>：四则运算，如：<code>width: calc(200px - 100px)</code>等于<code>width: 100px</code>，注意，进行运算的对象的单位要是一样的。</p>
+</li>
+<li><p><code>counter()</code>：将计数器的值添加到元素。</p>
+</li>
+<li><p><code>counters()</code>：将计数器的值添加到元素。</p>
+</li>
+<li><p><code>sttr()</code>：返回元素的属性值，参数必须为参数的属性，如：</p>
+<pre><code class='language-html' lang='html'>&lt;a href=&quot;http://aioverg.com&quot;&gt;荆棘之旅&lt;/a&gt;
+&lt;style&gt;
+    /*会将标签&lt;a&gt;的href属性的值作为&lt;a&gt;标签最后一个元素*/
+    a::after {
+        content: attr(href)
+    }
+&lt;/style&gt;
+</code></pre>
+</li>
+<li><p><code>url()</code>：指向对一个资源的指针。如：</p>
+<pre><code class='language-html' lang='html'>&lt;p&gt;&lt;/p&gt;
+&lt;style&gt;
+    p {/*为&lt;p&gt;设置背景图片*/
+        background-image: url(&quot;aioverg.jpg&quot;)
+    }
+&lt;/style&gt;
+</code></pre>
+</li>
+<li><p><code>image()</code>：大多数浏览器不支持，暂略。</p>
+</li>
+<li><p><code>image-set()</code>：大多数浏览器不支持，暂略。</p>
+</li>
+<li><p><code>linear-gradient()</code>：使用颜色创建线性的渐变图像。</p>
+</li>
+<li><p><code>radial-gradient()</code>：使用颜色创建径向的渐变图像。</p>
+</li>
+<li><p><code>repeating-linear-gradient()</code>：使用颜色创建重复径向的渐变图像。</p>
+</li>
+<li><p><code>repeating-radial-gradient()</code>：使用颜色创建重复线性的渐变图像。</p>
+</li>
+
+</ul>
+</body>
+</html>
