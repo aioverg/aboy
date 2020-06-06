@@ -36,7 +36,6 @@ a {
     display: flex;
 	justify-content: center;
     flex-wrap: wrap-reverse;
-    cursor: pointer;
 }
 .menu-tags .red {
     color: red;
@@ -45,7 +44,8 @@ a {
     display: inline-block;
     margin: 0 10px 0 0;
     font-size: 14px;
-	color: #c0bfbf;
+    color: #c0bfbf;
+    cursor: pointer;
 }
 .menu-tag:hover {
     color: red;

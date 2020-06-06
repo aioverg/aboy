@@ -28,8 +28,9 @@
 			<div v-show="info.menuContent">
 				<!--标签-->
 				<div class="menu-tags">
-					<span class="menu-tag" :class="info.selTag==index?'red':null" v-for="(item, index) in menuTags"
-						@click="tag(item, index)">{{item}}</span>
+					<span class="menu-tag" :class="info.selTag==index?'red':null" v-for="(item, index) in menuTags" @click="tag(item, index)">
+						{{item}}
+					</span>
 				</div>
 				<!--标签内容-->
 				<div class="body">
