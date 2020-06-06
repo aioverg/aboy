@@ -10,28 +10,36 @@
 
 <body>
 	<div class="content">
+		<!--标题-->
 		<div class="blog-title">荆棘之旅</div>
 		<div id="app">
+			<!--顶部菜单栏-->
 			<div class="nav">
 				<router-link to="/" v-on:click.native="menu('index')">首页</router-link>
 				<router-link to="/fe" v-on:click.native="menu('fe')">前端</router-link>
 				<router-link to="/math" v-on:click.native="menu('math')">数学</router-link>
 				<router-link to="/music" v-on:click.native="menu('music')">乐理</router-link>
 			</div>
+			<!--“首页” 菜单内容-->
 			<div v-show="!info.menuContent">
 				我是首页，什么都没有
 			</div>
+			<!--其他菜单内容-->
 			<div v-show="info.menuContent">
+				<!--标签-->
 				<div class="menu-tags">
 					<span class="menu-tag" :class="info.selTag==index?'red':null" v-for="(item, index) in menuTags"
 						@click="tag(item, index)">{{item}}</span>
 				</div>
+				<!--标签内容-->
 				<div class="body">
+					<!--标签列表-->
 					<ul>
 						<li v-for="item in articleList">
 							<a :href="item.path">{{item.name}}</a>
 						</li>
 					</ul>
+					<!--翻页按钮-->
 					<div class="page-box">
 						<span class="page" @click="prePage">上一页</span>
 						<span class="page">{{info.page}}</span>
@@ -43,10 +51,13 @@
 		</div>
 	</div>
 </body>
-<script src="./static/vue.js"></script>
+<script src="./static/vue.min.js"></script>
 <script src="./static/vue-router.js"></script>
+<!--前端-->
 <script src="./fe/index.js"></script>
+<!--数学-->
 <script src="./math/index.js"></script>
+<!--音乐-->
 <script src="./music/index.js"></script>
 
 <script>
@@ -93,6 +104,7 @@
 			}
 		},
 		methods: {
+			//获取标签，并加载标签内容
 			tag(name, index) {
 				this.info.page = 0
 				this.info.selTag = index
@@ -104,6 +116,7 @@
 				let jsonInfo = JSON.stringify(this.info)
 				sessionStorage.setItem("info", jsonInfo)
 			},
+			//向下翻页
 			nextPage() {
 				if (this.info.page >= this.info.pages) {
 					alert("最后一页")
@@ -112,6 +125,7 @@
 				this.articleList = this.menuName[this.info.tagName].slice(10 * this.info.page, 10 + 10 * this.info.page)
 				this.info.page += 1
 			},
+			//向上翻页
 			prePage() {
 				if (this.info.page <= 1) {
 					alert("第一页")
@@ -121,6 +135,7 @@
 				this.articleList = this.menuName[this.info.tagName].slice(10 * this.info.page - 10, 10 * this.info.page)
 
 			},
+			//获取菜单并加载标签
 			menu(name) {//新增菜单需要在这个地方加一个判断
 				this.info.selMenu = name
 				let objInfo = JSON.parse(sessionStorage.getItem("info"))
@@ -142,8 +157,8 @@
 				}
 				if (name == "fe") {
 					this.info.menuContent = true
-					this.menuName = feCatalog
-					this.menuTags = feTags
+					this.menuName = feCatalog //目录
+					this.menuTags = feTags //标签
 					if (objInfo) {
 						this.tag(this.info.tagName, this.info.selTag)
 					} else {
@@ -174,6 +189,7 @@
 				sessionStorage.setItem("info", jsonInfo)
 			}
 		},
+		//页面加载时调用
 		mounted: function () {//新增菜单需要在这个地方加一个判断
 			let objInfo = JSON.parse(sessionStorage.getItem("info"))
 			if (objInfo) {

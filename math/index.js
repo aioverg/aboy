@@ -3,13 +3,6 @@ const mathTags = [
     "statistics",
 ]
 
-
-
-
-
-
-
-
 const mathCatalog = {
     "Python":[
         {

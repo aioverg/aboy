@@ -1,4 +1,6 @@
-const feTags = [
+//标签数据与目录数据中的标签值要相等。
+
+const feTags = [ //标签
     "HTML",
     "CSS",
     "JavaScript",
@@ -8,7 +10,7 @@ const feTags = [
 
 
 
-const feCatalog = {
+const feCatalog = { //目录
     "HTML": [
         {
             name: "网页三要素",
