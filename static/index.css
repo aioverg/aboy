@@ -26,6 +26,10 @@ a {
 }
 .nav a {
     padding: 10px;
+    font-weight: 600;
+}
+.router-link-exact-active {
+    color: red;
 }
 .menu-tags {
     margin: 10px 0;

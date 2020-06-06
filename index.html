@@ -18,22 +18,26 @@
 				<router-link to="/math" v-on:click.native="menu('math')">数学</router-link>
 				<router-link to="/music" v-on:click.native="menu('music')">乐理</router-link>
 			</div>
-			<div class="menu-tags">
-				<span class="menu-tag" :class="selTag==index?'red':null" v-for="(tagName, index) in menuTags"
-					@click="tag(tagName, index)">{{tagName}}</span>
+			<div v-show="!info.menuContent">
+				我是首页，什么都没有
 			</div>
-			<div class="body">
-				<ul>
-					<li v-for="item in articleList">
-						<a :href="item.path">{{item.name}}</a>
-					</li>
-				</ul>
-				<div class="page-box" v-show="btBox">
-					<span class="page" @click="prePage">上一页</span>
-					<span class="page">{{page}}</span>
-					<span class="page" @click="nextPage">下一页</span>
-					<span class="page">共{{pages}}页</span>
-
+			<div v-show="info.menuContent">
+				<div class="menu-tags">
+					<span class="menu-tag" :class="info.selTag==index?'red':null" v-for="(item, index) in menuTags"
+						@click="tag(item, index)">{{item}}</span>
+				</div>
+				<div class="body">
+					<ul>
+						<li v-for="item in articleList">
+							<a :href="item.path">{{item.name}}</a>
+						</li>
+					</ul>
+					<div class="page-box">
+						<span class="page" @click="prePage">上一页</span>
+						<span class="page">{{info.page}}</span>
+						<span class="page" @click="nextPage">下一页</span>
+						<span class="page">共{{info.pages}}页</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -46,16 +50,11 @@
 <script src="./music/index.js"></script>
 
 <script>
-	//const one = { template: feIndex }
-	function otherMenu(data) {
-		console.log(data)
-	}
-
 	const router = new VueRouter({
 		routes: [
 			{
 				path: "/",
-				name: "tags",
+				name: "index",
 				//component: tagsIndex
 			},
 			{
@@ -80,94 +79,121 @@
 		router: router,
 		data: function () {
 			return {
+				info: {
+					selMenu: null,
+					tagName: null,
+					selTag: 0,
+					menuContent: false,
+					page: 0,
+					pages: 0,
+				},
 				articleList: [],
-				menuName: null,
 				menuTags: [],
-				tagName: null,
-				selTag: 0,
-				btBox: false,
-				page: 0,
-				pages: 100,
-
+				menuName: [],
 			}
 		},
 		methods: {
 			tag(name, index) {
-				this.page = 0
-				this.selTag = index
-				this.tagName = name
+				this.info.page = 0
+				this.info.selTag = index
+				this.info.tagName = name
 				let sum = this.menuName[name].length
-				this.pages = Math.ceil(sum / 10)
-				this.page += 1
+				this.info.pages = Math.ceil(sum / 10)
+				this.info.page += 1
 				this.articleList = this.menuName[name].slice(0, 10)
+				let jsonInfo = JSON.stringify(this.info)
+				sessionStorage.setItem("info", jsonInfo)
 			},
 			nextPage() {
-				console.log("下", this.page, this.pages)
-				if (this.page >= this.pages) {
+				if (this.info.page >= this.info.pages) {
 					alert("最后一页")
 					return
 				}
-				this.articleList = this.menuName[this.tagName].slice(10 * this.page, 10 + 10 * this.page)
-				this.page += 1
+				this.articleList = this.menuName[this.info.tagName].slice(10 * this.info.page, 10 + 10 * this.info.page)
+				this.info.page += 1
 			},
 			prePage() {
-				console.log("上", this.page, this.pages)
-				if (this.page <= 1) {
+				if (this.info.page <= 1) {
 					alert("第一页")
 					return
 				}
-				this.page -= 1
-				this.articleList = this.menuName[this.tagName].slice(10 * this.page - 10, 10 * this.page)
+				this.info.page -= 1
+				this.articleList = this.menuName[this.info.tagName].slice(10 * this.info.page - 10, 10 * this.info.page)
 
 			},
-			menu(name) {
-				if (name == "index") {
-					this.btBox = false
+			menu(name) {//新增菜单需要在这个地方加一个判断
+				this.info.selMenu = name
+				let objInfo = JSON.parse(sessionStorage.getItem("info"))
+				if (objInfo) {
+					if (name == objInfo.selMenu) {
+						this.info = objInfo
+					} else {
+						objInfo = null
+						this.info.selMenu = name
+						this.info.tagName = null
+						this.info.selTag = 0
+						this.info.menuContent = false
+						this.info.page = 0
+						this.info.pages = 0
+					}
 				}
-				this.btBox = true
+				if (name == "index") {
+					this.info.menuContent = false
+				}
 				if (name == "fe") {
+					this.info.menuContent = true
 					this.menuName = feCatalog
 					this.menuTags = feTags
-					this.tag(this.menuTags[0], 0)
-					return
+					if (objInfo) {
+						this.tag(this.info.tagName, this.info.selTag)
+					} else {
+						this.tag(this.menuTags[0], 0)
+					}
 				}
 				if (name == "math") {
+					this.info.menuContent = true
 					this.menuName = mathCatalog
 					this.menuTags = mathTags
-					this.tag(this.menuTags[0], 0)
-					return
+					if (objInfo) {
+						this.tag(this.info.tagName, this.info.selTag)
+					} else {
+						this.tag(this.menuTags[0], 0)
+					}
 				}
 				if (name == "music") {
+					this.info.menuContent = true
 					this.menuName = musicCatalog
 					this.menuTags = musicTags
-					this.tag(this.menuTags[0], 0)
-					return
+					if (objInfo) {
+						this.tag(this.info.tagName, this.info.selTag)
+					} else {
+						this.tag(this.menuTags[0], 0)
+					}
 				}
-
-
+				let jsonInfo = JSON.stringify(this.info)
+				sessionStorage.setItem("info", jsonInfo)
 			}
 		},
-		mounted: function () {
-			console.log(3333333)
+		mounted: function () {//新增菜单需要在这个地方加一个判断
+			let objInfo = JSON.parse(sessionStorage.getItem("info"))
+			if (objInfo) {
+				this.info = objInfo
+			}
 			if (window.location.hash == '#/') {
-				this.btBox = false
+				this.info.menuContent = false
 				return
 			}
-			this.btBox = true
+			this.info.menuContent = true
 			if (window.location.hash == '#/fe') {
-				console.log(this.page, this.pages)
 				this.menu('fe')
-				this.tag(this.menuTags[0], 0)
 				return
 			}
 			if (window.location.hash == '#/math') {
 				this.menu('math')
-				this.tag(this.menuTags[0], 0)
 				return
 			}
 			if (window.location.hash == '#/music') {
 				this.menu('music')
-				this.tag(this.menuTags[0], 0)
 				return
 			}
 		}
