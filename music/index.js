@@ -8,7 +8,7 @@ const musicTags = [
 
 
 const musicCatalog = {
-    css:[
+    "theory":[
         {
             name: "00111",
             path: "www.baidu.com"
@@ -22,7 +22,7 @@ const musicCatalog = {
             path: "www.baidu.com"
         },
     ],
-    "javascript": [
+    "violin": [
         {
             name: "00444",
             path: "www.baidu.com"
@@ -33,6 +33,20 @@ const musicCatalog = {
         },
         {
             name: "00666",
+            path: "www.baidu.com"
+        },
+    ],
+    "harmonica": [
+        {
+            name: "004",
+            path: "www.baidu.com"
+        },
+        {
+            name: "005",
+            path: "www.baidu.com"
+        },
+        {
+            name: "006",
             path: "www.baidu.com"
         },
     ]

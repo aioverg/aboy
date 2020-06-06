@@ -47,10 +47,28 @@ a {
     color: red;
 }
 .body ul {
-    list-style-type: none
+    list-style-type: none;
+    margin: 15px 0;
+    min-height: 365px;
 }
 .body li {
     margin: 0 0 15px;
+}
+.body .page-box {
+    width: 100%;
+    
+    text-align: center;
+}
+.body .page-box .page {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+    user-select: none;
+    font-size: 15px;
+    color: #c0bfbf;
+}
+.body .page-box .page:hover {
+    color: red;
 }
 
 @media screen and (min-width: 0px) { 
@@ -62,7 +80,7 @@ a {
 }
 @media screen and (min-width: 850px) { 
     .content {
-        width: 800PX;
+        width: 800px;
         margin: 60px auto;
         padding: 0 4vw;
     }

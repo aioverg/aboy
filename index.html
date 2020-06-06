@@ -4,52 +4,56 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="./css/index.css">
+	<link rel="stylesheet" href="./static/index.css">
 	<title>荆棘之旅</title>
 </head>
 
 <body>
 	<div class="content">
-	<div class="blog-title">荆棘之旅</div>
-	<div id="app">
-		<div class="nav">
-			<router-link to="/" v-on:click.native="menu('tags')">首页</router-link>
-			<router-link to="/fe" v-on:click.native="menu('fe')">前端</router-link>
-		    <router-link to="/math" v-on:click.native="menu('math')">数学</router-link>
-			<router-link to="/music" v-on:click.native="menu('music')">乐理</router-link>
-		</div>
-		<div class="menu-tags">
-			<span class="menu-tag" :class="selTag==index?'red':null" v-for="(tagName, index) in menuTags" @click="tag(tagName, index)">{{tagName}}</span>
-		</div>
-		<div class="body">
-			<ul>
-				<li v-for="item in articleList">
-					<a :href="item.path">{{item.name}}</a>
-				</li>
-			    </template>
-			</ul>
-			<button @click="nextPage">下一页</button>
-			<button @click="prePage">上一页</button>
+		<div class="blog-title">荆棘之旅</div>
+		<div id="app">
+			<div class="nav">
+				<router-link to="/" v-on:click.native="menu('index')">首页</router-link>
+				<router-link to="/fe" v-on:click.native="menu('fe')">前端</router-link>
+				<router-link to="/math" v-on:click.native="menu('math')">数学</router-link>
+				<router-link to="/music" v-on:click.native="menu('music')">乐理</router-link>
+			</div>
+			<div class="menu-tags">
+				<span class="menu-tag" :class="selTag==index?'red':null" v-for="(tagName, index) in menuTags"
+					@click="tag(tagName, index)">{{tagName}}</span>
+			</div>
+			<div class="body">
+				<ul>
+					<li v-for="item in articleList">
+						<a :href="item.path">{{item.name}}</a>
+					</li>
+				</ul>
+				<div class="page-box" v-show="btBox">
+					<span class="page" @click="prePage">上一页</span>
+					<span class="page">{{page}}</span>
+					<span class="page" @click="nextPage">下一页</span>
+					<span class="page">共{{pages}}页</span>
+
+				</div>
+			</div>
 		</div>
 	</div>
-    </div>
 </body>
-<script src="./js/vue.js"></script>
-<script src="./js/vue-router.js"></script>
+<script src="./static/vue.js"></script>
+<script src="./static/vue-router.js"></script>
 <script src="./fe/index.js"></script>
 <script src="./math/index.js"></script>
 <script src="./music/index.js"></script>
-<script src="./tags/index.js"></script>
 
 <script>
 	//const one = { template: feIndex }
-	function otherMenu(data){
+	function otherMenu(data) {
 		console.log(data)
 	}
 
 	const router = new VueRouter({
 		routes: [
-		    {
+			{
 				path: "/",
 				name: "tags",
 				//component: tagsIndex
@@ -74,81 +78,94 @@
 	new Vue({
 		el: "#app",
 		router: router,
-		data: function(){
+		data: function () {
 			return {
 				articleList: [],
 				menuName: null,
 				menuTags: [],
 				tagName: null,
 				selTag: 0,
+				btBox: false,
 				page: 0,
 				pages: 100,
-				
+
 			}
 		},
 		methods: {
-			tag(name, index){
+			tag(name, index) {
+				this.page = 0
 				this.selTag = index
 				this.tagName = name
 				let sum = this.menuName[name].length
-				this.pages = Math.ceil(sum/10)
-				this.page +=1 
-				this.articleList = this.menuName[name].slice(0,10)
+				this.pages = Math.ceil(sum / 10)
+				this.page += 1
+				this.articleList = this.menuName[name].slice(0, 10)
 			},
-			nextPage(){
-				console.log(this.page)
-				if(this.page >= this.pages){
+			nextPage() {
+				console.log("下", this.page, this.pages)
+				if (this.page >= this.pages) {
 					alert("最后一页")
 					return
 				}
-				this.articleList = this.menuName[this.tagName].slice(10*this.page, 10+10*this.page)
+				this.articleList = this.menuName[this.tagName].slice(10 * this.page, 10 + 10 * this.page)
 				this.page += 1
 			},
-			prePage(){
-				console.log(this.page)
-				if(this.page <= 1){
+			prePage() {
+				console.log("上", this.page, this.pages)
+				if (this.page <= 1) {
 					alert("第一页")
 					return
 				}
 				this.page -= 1
-				this.articleList = this.menuName[this.tagName].slice(10*this.page-10, 10*this.page)
-				
+				this.articleList = this.menuName[this.tagName].slice(10 * this.page - 10, 10 * this.page)
+
 			},
-			menu(name){
-				if(name == "fe"){
+			menu(name) {
+				if (name == "index") {
+					this.btBox = false
+				}
+				this.btBox = true
+				if (name == "fe") {
 					this.menuName = feCatalog
 					this.menuTags = feTags
+					this.tag(this.menuTags[0], 0)
 					return
 				}
-				if(name == "math"){
+				if (name == "math") {
 					this.menuName = mathCatalog
 					this.menuTags = mathTags
+					this.tag(this.menuTags[0], 0)
 					return
 				}
-				if(name == "music"){
+				if (name == "music") {
 					this.menuName = musicCatalog
 					this.menuTags = musicTags
+					this.tag(this.menuTags[0], 0)
 					return
 				}
-				
+
+
 			}
 		},
-		mounted: function(){
-			if(window.location.hash == '#/' || window.location.hash == '#/tags'){
+		mounted: function () {
+			console.log(3333333)
+			if (window.location.hash == '#/') {
+				this.btBox = false
 				return
 			}
-			this.tags = null
-			if(window.location.hash == '#/fe'){
+			this.btBox = true
+			if (window.location.hash == '#/fe') {
+				console.log(this.page, this.pages)
 				this.menu('fe')
 				this.tag(this.menuTags[0], 0)
 				return
 			}
-			if(window.location.hash == '#/math'){
+			if (window.location.hash == '#/math') {
 				this.menu('math')
 				this.tag(this.menuTags[0], 0)
 				return
 			}
-			if(window.location.hash == '#/music'){
+			if (window.location.hash == '#/music') {
 				this.menu('music')
 				this.tag(this.menuTags[0], 0)
 				return

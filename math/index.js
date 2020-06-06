@@ -11,7 +11,7 @@ const mathTags = [
 
 
 const mathCatalog = {
-    css:[
+    "Python":[
         {
             name: "777",
             path: "www.baidu.com"
@@ -25,7 +25,7 @@ const mathCatalog = {
             path: "www.baidu.com"
         },
     ],
-    javascript: [
+    "statistics": [
         {
             name: "1010",
             path: "www.baidu.com"
