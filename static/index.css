@@ -22,11 +22,11 @@ a {
 
 }
 .content {
-    min-height: 650px;
+    min-height: 600px;
 }
 .nav a {
     padding: 10px;
-    font-weight: 600;
+    font-weight: 500;
 }
 .router-link-exact-active {
     color: red;
@@ -74,6 +74,18 @@ a {
 .body .page-box .page:hover {
     color: red;
 }
+.footer {
+    text-align: center;
+    margin: 0 0 20px;
+    font-size: 13px;
+    color: #a19f9f;
+}
+.footer a {
+    color: #a19f9f;
+}
+.footer a:hover {
+    color: red;
+}
 
 @media screen and (min-width: 0px) { 
     .content {
@@ -85,7 +97,7 @@ a {
 @media screen and (min-width: 850px) { 
     .content {
         width: 800px;
-        margin: 60px auto;
+        margin: 60px auto 20px;
         padding: 0 4vw;
     }
 }
