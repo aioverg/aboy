@@ -1,4 +1,4 @@
-#### JS Promise
+#### Promise 使用范例
 
 实例：
 

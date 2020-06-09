@@ -1,4 +1,4 @@
-PromiseA+规范
+#### PromiseA+规范
 
 一个健全的、可互操作的 JavaScript Promise 标准 —— 由开发者而定，为开发者而生。
 

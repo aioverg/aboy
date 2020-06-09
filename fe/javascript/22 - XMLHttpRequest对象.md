@@ -1,4 +1,4 @@
-#### JS XMLHttpRequest对象
+#### XMLHttpRequest对象
 
 **概念：**XMLHttpRequest对象是JavaScript定义的用于与服务器通信的对象。所有的浏览器都有内建的XMLHttpRequest对象。
 

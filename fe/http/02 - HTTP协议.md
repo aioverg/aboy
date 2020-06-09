@@ -6,11 +6,11 @@
 
 **请求报文**：由请求方法、请求URI、协议版本、可选的请求首部字段和内容实体构成，例如：
 
-<img src="C:\Users\acer\aioverg\前端\img\015.jpg" style="zoom:80%;" />
+<img src="..\img\015.jpg" style="zoom:80%;" />
 
 **响应报文**：由协议版本、状态码、用以解释状态码原因的短语、可选的响应首部字段和内容实体构成，例如：
 
-<img src="C:\Users\acer\aioverg\前端\img\016.jpg" style="zoom:80%;" />
+<img src="..\img\016.jpg" style="zoom:80%;" />
 
 **HTTP首部字段**
 
@@ -92,37 +92,35 @@
 
 1. GET：获取资源，GET方法用来请求访问已被URI识别的资源，指定的资源经服务器解析后返回响应内容。例如：
 
-   <img src="C:\Users\acer\aioverg\前端\img\017.jpg" style="zoom:80%;" />
+   <img src="..\img\017.jpg" style="zoom:80%;" />
 
 2. POST：传输实体主体，GET方法也可以传输实体的主体，但一般不用GET方法进行传输，而是用POST方法。例如：
 
-   <img src="C:\Users\acer\aioverg\前端\img\018.jpg" style="zoom:80%;" />
-
-   
+   <img src="..\img\018.jpg" style="zoom:80%;" />
 
 3. PUT：传输文件，向FTP协议的文件上传一样，要求在请求报文的主体中包含文件内容，然后将文件保存到请求URI指定的位置。但由于PUT方法自身不带验证机制，任何人都可以上传文件，存在安全问题，因此一般Web网站不使用该方法。例如：
 
-   <img src="C:\Users\acer\aioverg\前端\img\019.jpg" style="zoom:80%;" />
+   <img src="..\img\019.jpg" style="zoom:80%;" />
 
 4. HEAD：获得报文首部，与GET方法一样，只是不返回报文主体部分，用于确认URI的有效性及资源更新的日期时间等。例如：
 
-   <img src="C:\Users\acer\aioverg\前端\img\020.jpg" style="zoom:80%;" />
+   <img src="..\img\020.jpg" style="zoom:80%;" />
 
 5. DELETE：删除文件，与PUT相反的方法，按请求URI删除指定的资源，DELETE方法也不带验证机制，一般Web网站也不适用DELETE方法。例如：
 
-   <img src="C:\Users\acer\aioverg\前端\img\021.jpg" style="zoom:80%;" />
+   <img src="..\img\021.jpg" style="zoom:80%;" />
 
 6. OPTIONS：询问支持的方法，查询针对请求URI指定的资源的支持方法。例如：
 
-   <img src="C:\Users\acer\aioverg\前端\img\022.jpg" style="zoom:80%;" />
+   <img src="..\img\022.jpg" style="zoom:80%;" />
 
 7. TRACE：追踪路径，TRACE方法是让Web服务器端将之前的请求通信环回给客户端的方法。发送请求时，在 Max-Forwards 首部字段中填入数值，每经过一个 服务器端就将该数字减 1，当数值刚好减到 0 时，就停止继续传输，最 后接收到请求的服务器端则返回状态码 200 OK 的响应。 客户端通过 TRACE 方法可以查询发送出去的请求是怎样被加工修 改 / 篡改的。这是因为，请求想要连接到源目标服务器可能会通过代理 中转，TRACE 方法就是用来确认连接过程中发生的一系列操作。TRACE 方法容易引发 XST （Cross-Site Tracing，跨站追踪）攻击，所以通常不会用到。例如：
 
-   <img src="C:\Users\acer\aioverg\前端\img\023.jpg" style="zoom:80%;" />
+   <img src="..\img\023.jpg" style="zoom:80%;" />
 
 8. CONNECT：要求用隧道协议连接代理。CONNECT 方法要求在与代理服务器通信时建立隧道，实现用隧道 协议进行 TCP 通信。主要使用 SSL（Secure Sockets Layer，安全套接 层）和 TLS（Transport Layer Security，传输层安全）协议把通信内容加 密后经网络隧道传输。 例如：
 
-<img src="C:\Users\acer\aioverg\前端\img\024.jpg" style="zoom:80%;" />
+<img src="..\img\024.jpg" style="zoom:80%;" />
 
 **持久连接**：持久连接的特点是任意一端没有明确提出断开连接，则TCP就不会断开连接。在HTTP/1.1 中，所有的连接默认都是持久连接。
 

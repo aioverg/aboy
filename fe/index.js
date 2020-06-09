@@ -5,33 +5,42 @@ const feTags = [ //标签
     "CSS",
     "JavaScript",
     "HTTP",
-    "Git"
+    "Git",
+    "Node",
+    "React",
+    "Vue",
+    "Web"
 ]
 
 
 
 const feCatalog = { //目录
     "HTML": [
-        {
-            name: "网页三要素",
+	    {
+            name: "注意",
             path: "./fe/html/01.html"
         },
         {
-            name: "meta元素",
+            name: "网页三要素",
             path: "./fe/html/02.html"
         },
         {
-            name: "src与href",
+            name: "meta元素",
             path: "./fe/html/03.html"
         },
         {
-            name: "在html中引入SVG的几种方法",
+            name: "src与href",
             path: "./fe/html/04.html"
         },
         {
-            name: "注意",
+            name: "在html中引入SVG的几种方法",
             path: "./fe/html/05.html"
         },
+		{
+            name: "组件属性",
+            path: "./fe/html/06.html"
+        },
+        
 
     ],
     "CSS":[
@@ -268,9 +277,160 @@ const feCatalog = { //目录
         {
             name: "三次握手和四次挥手",
             path: "./fe/http/04.html"
+        },
+        {
+            name: "Axios概览",
+            path: "./fe/http/05.html"
         }
     ],
     "Git": [
-        
+        {
+            name: "常用命令",
+            path: "./fe/git/01.html"
+        },
+		{
+            name: "概念",
+            path: "./fe/git/02.html"
+        },
+		{
+            name: "从远程仓库拉取版本",
+            path: "./fe/git/03.html"
+        },
+		{
+            name: "几种常见的合作开发模式",
+            path: "./fe/git/04.html"
+        },
+    ],
+    "Node": [
+        {
+            name: "npm简介",
+            path: "./fe/node/01.html"
+        },
+        {
+            name: "webpack使用",
+            path: "./fe/node/01.html"
+        },
+    ],
+    "React": [
+        {
+            name: "基本使用",
+            path: "./fe/react/01.html"
+        },
+        {
+            name: "JSX",
+            path: "./fe/react/03.html"
+        },
+        {
+            name: "组件",
+            path: "./fe/react/04.html"
+        },
+        {
+            name: "State",
+            path: "./fe/react/05.html"
+        },
+        {
+            name: "事件处理中this指向",
+            path: "./fe/react/07.html"
+        },
+        {
+            name: "条件渲染",
+            path: "./fe/react/08.html"
+        },
+        {
+            name: "遍历渲染和key",
+            path: "./fe/react/09.html"
+        },
+        {
+            name: "React与Vue的异同",
+            path: "./fe/react/10.html"
+        },
+    ],
+    "Vue": [
+        {
+            name: "key属性与可复用",
+            path: "./fe/vue/01.html"
+        },
+        {
+            name: "name属性及动态组件",
+            path: "./fe/vue/02.html"
+        },
+        {
+            name: "render h = h(App)有什么用",
+            path: "./fe/vue/03.html"
+        },
+        {
+            name: "Vue CLI基础",
+            path: "./fe/vue/04.html"
+        },
+        {
+            name: "Vue Loader基础",
+            path: "./fe/vue/05.html"
+        },
+        {
+            name: "Vue Router及其原理",
+            path: "./fe/vue/06.html"
+        },
+        {
+            name: "Vue Vuex",
+            path: "./fe/vue/07.html"
+        },
+        {
+            name: "构造器、组件、new Vue()的关系",
+            path: "./fe/vue/08.html"
+        },
+        {
+            name: "计算属性和侦听属性",
+            path: "./fe/vue/09.html"
+        },
+        {
+            name: "键码keyCodes",
+            path: "./fe/vue/10.html"
+        },
+        {
+            name: "权限路由",
+            path: "./fe/vue/11.html"
+        },
+        {
+            name: "生命周期",
+            path: "./fe/vue/12.html"
+        },
+        {
+            name: "双向绑定原理",
+            path: "./fe/vue/13.html"
+        },
+        {
+            name: "跳转页面并传值",
+            path: "./fe/vue/14.html"
+        },
+        {
+            name: "性能优化",
+            path: "./fe/vue/15.html"
+        },
+        {
+            name: "组件间通信",
+            path: "./fe/vue/16.html"
+        },
+    ],
+    "Web": [
+        {
+            name: "Chrome开发者工具",
+            path: "./fe/web/01.html"
+        },
+        {
+            name: "浏览器缓存和本地存储",
+            path: "./fe/web/02.html"
+        },
+        {
+            name: "浏览器页面呈现",
+            path: "./fe/web/03.html"
+        },
+        {
+            name: "针对Web的攻击",
+            path: "./fe/web/04.html"
+        },
+        {
+            name: "重绘与回流",
+            path: "./fe/web/05.html"
+        },
     ]
 }

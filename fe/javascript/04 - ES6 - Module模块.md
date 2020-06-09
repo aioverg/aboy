@@ -1,4 +1,4 @@
-#### ES6 Module模块
+#### Module模块
 
 ##### 创建模块
 
@@ -8,11 +8,11 @@
 
    ```javascript
    //example.js文件
-   export var one = "hello"
+   export var one = "hello"  //输出变量one
    var two = "world"
-   export function f(){}
+   export function f(){}     //输出函数f
    function g(){}
-   export {two, g as gRename}  //必须要有大括号
+   export {two, g as gRename}  //必须要有大括号,输出变量two和函数g
    //example.js模块，输出变量 one、two、函数f()、g()，且g()改名为gRename。
    ```
 
