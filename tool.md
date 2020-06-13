@@ -17,6 +17,7 @@
 - Windows、office破解工具：KMS
 - Adobe集合破解工具：amtemu
 - 压缩工具：7-Zip
+- shadowsocks：https://portal.shadowsocks.nz
 
 ##### 账号密码：h、s、.
 
