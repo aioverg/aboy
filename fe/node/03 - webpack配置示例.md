@@ -1,6 +1,6 @@
-#### 基本使用
+#### 配置示例
 
-##### webpack.config.sj基本配置示例
+##### webpack.config.js 基本配置示例
 
 ```javascript
 const path = require('path');  //引入node.js内置的处理路径的path模块
@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');//用于生成入口文
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');//用于清空上一次打包文件夹内的打包文件，需要安装(npm install clean-webpack-plugin)
 //解析CSS，需要根据使用CSS文件类型安装响应程序包，.css文件安装(npm install --save-dev style-loader css-loader)
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");//用于将引入的css文件提取成单独的文件，一般情况下系统默认把css文件提取到js文件中。
-[const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');用于将单独的css文件打包成单独的css文件，"mini-css-extract-plugin"会把css文件打包成一个css文件。使用实例暂略。]
+[const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'); 用于将单独的css文件打包成单独的css文件，"mini-css-extract-plugin"会把所有的css文件打包成一个css文件。使用实例暂略。]
 //打包图片，打包字体文件，打包媒体文件，需要安装(npm install --save-dev file-loader)
 
 module.exports = {
@@ -53,8 +53,6 @@ module.exports = {
   }
 };
 ```
-
-
 
 ##### 概念
 
