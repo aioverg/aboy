@@ -11,7 +11,7 @@ NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署�
 ##### 命令
 
 1. 更新npm：`npm install npm -g`，一般情况下node.js已经集成了npm只需要安装node.js就可以了。
-2. 查看npm版本：npm -v
+2. 查看npm版本： `npm -v` 
 3. 本地安装：本地安装：`npm install <Module Name>`，程序包被安装在node_moudles目录下，使用时直接导入即可(`inport name from 'Module Name'`)，不需要指定路径。
 4. 全局安装程序包：`npm install <Module Name> -g`
 5. 所有查看全局程序包：`npm list -g`
