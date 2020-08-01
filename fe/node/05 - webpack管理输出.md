@@ -33,3 +33,19 @@ module.export = {
 }
 ```
 
+此时文件目录：
+
+```javascript
+webpack-demo
+  |- package.json
+  |- webpack.config.js
+  |- /dist
+  |- /src
+     |- index.html
+     |- index.js
+     |- one.js
+     |- index.css
+     |- ex.tff
+     |- ex.jpg
+```
+
