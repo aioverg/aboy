@@ -26,7 +26,7 @@ NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署�
 
 1. **package.json：**包属性属性说明文件
 
-   - scripts：实际运行命令
+   - scripts：实际运行命令，可以给包命令重新命名别名。
 
    - name：包名
    - version：包的版本号

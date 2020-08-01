@@ -21,7 +21,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
     entry: {},
-    devtoll: "inline-socure-map", //追踪错误源码
+    devtool: "inline-source-map", //追踪错误源码
     devServer: { //浏览器自动刷新
       contentBase: './dist' //将 dist 目录下的文件，作为可访问文件。
     },

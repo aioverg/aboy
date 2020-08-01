@@ -14,7 +14,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
-module.export = {
+module.exports = {
     entry: { //入口文件依赖
         index: './src/index.js',
         one: './src/one.js'
