@@ -11,7 +11,6 @@ nginx.conf #nginx的全局配置，对全局生效
      |--server:
         |--location: #配置请求的路由，以及各种页面的处理情况
         |--location
-
 ```
 
 ##### 配置文件示例
