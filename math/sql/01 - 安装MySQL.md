@@ -34,7 +34,7 @@
    2018-04-20T02:35:05.464644Z 5 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: APWCY5ws&hjQ
    ```
 
-6. 安装MySQL：`mysqld install`
+6. 安装MySQL：`mysqld install`，每次重新启动的时候都要安装。
 
 7. 启动MySQL：`net start mysql`
 
