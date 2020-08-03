@@ -49,7 +49,7 @@ set FLASK_ENV=develpoment #设置文件变动时服务器自动重启
 flask run #启动服务器，默认的地址是：http://127.0.0.1:5000
 ```
 
-##### 创建 web.html 文件发起请求
+##### 创建 `web.htm`l 文件发起请求
 
 ```html
 <button onClick="get()">请求数据</button>
