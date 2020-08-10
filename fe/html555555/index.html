@@ -1,0 +1,65 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>React</title>
+		<!--引入react-->
+		<script src="react.development.js"></script>
+		<!--引入react-dom-->
+		<script src="react-dom.development.js"></script>
+		<!--引入babel，用以识别转义JSX-->
+		<script src="babel.min.js"></script>
+	</head>
+	<body>
+		<div id="root">5555555</div>
+	</body>
+	<!--转义JSX-->
+	<script type="text/jsx">
+	    //一般组件
+	    /*let times = "one"
+	    const element = (
+		    <div>
+		        <h1 style={{color: "blue"}}>{times}</h1>
+			    <h1 style={{color: "blue"}}>two</h1>
+			</div>
+		);*/
+		
+		//函数组件
+		/*function Hello(props){
+		    return (
+			    <div>
+			        <h1>{props.name}</h1>
+					<h1>two</h1>
+				</div>
+			)
+		}
+		const element = (
+		    <div>
+			    <Hello name="one" />
+				<Hello name="one" />
+			</div>
+		)*/
+		
+		
+		//类组件
+		class Hello extends React.Component {
+		    constructor(props){
+			    super(props)
+				this.state = {name: "one888"}
+				console.log(props)
+			}
+		
+		    render(){
+		        return (
+				    <div>
+					    <h1>{this.state.name}</h1>
+					    <h1>two</h1>
+					</div>
+				)
+		    }
+		}
+		const element = <Hello gg=""/>
+		
+		ReactDOM.render(element, document.getElementById('root'));
+    </script>
+</html>
