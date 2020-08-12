@@ -13,7 +13,7 @@
 		<script src="babel.min.js"></script>
 	</head>
 	<body>
-		<div id="root">5555555</div>
+		<div id="root">占位</div>
 	</body>
 	<script type="text/jsx">
 	    const element = (
@@ -40,7 +40,7 @@
 		<script src="babel.min.js"></script>
 	</head>
 	<body>
-		<div id="root">5555555</div>
+		<div id="root">占位</div>
 	</body>
 	<script type="text/jsx">	
 		function Hello(props){
