@@ -70,21 +70,31 @@
 
 1. 不要直接修改 `state` ，例如 `this.state.name = "hello"` 不会重新渲染组件；应该使用 `setState()` ，例如：`this.setState({name: "hello"})` 。
 
-2. `State` 的更新可能是异步的，即处于性能考虑，`React` 可能会把多个 `setState()` 合并成一个调用。因为 `this.props` 和 `this.state` 可能会异步更新，所以当依赖他们的值更新下一状态时，可能会出现错误，要解决这个问题，可以让 `setState()` 接收一个函数而不是一个对象。这个函数用上一个 `state` 作为第一个参数，将此次更新被应用时的 `props` 做为第二个参数，如：
+2. `State` 的更新可能是异步的，即处于性能考虑，`React` 可能会把多个 `setState()` 合并成一个调用。因为 `this.props` 和 `this.state` 可能会异步更新，所以当依赖他们的值更新下一个状态时，可能会出现错误。
+
+   例如依赖 `this.state` 和 `this.props` 的一个计数器：
 
    ```react
    this.setState({ //这里由于this.state和this.props可能会异步更新，所以依赖它们的值更新下一个状态时可能会出错
        counter: this.state.counter + this.props.increment
    })
-   
+   ```
+
+   要解决这个问题，可以让 `setState()` 接收一个函数而不是一个对象。这个函数用上一个 `state` 作为第一个参数，将此次更新被应用时的 `props` 做为第二个参数，如：
+
+   ```react
    this.setState((state, props) => ({
        counter: state.counter + props.increment
    }))
    ```
 
+3. `State` 的更新会被合并，即使用 `setState()` 一个一个更新 `state` 的对象时，`React` 会把对象合并到当前的 `state` 。
+
    
 
-3. 
+
+
+
 
 
 
