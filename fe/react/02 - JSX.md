@@ -2,7 +2,7 @@
 
 ##### 简介
 
-1. **概念**：`JSX`是`React`定义的，是`React.createElement()`的语法糖，用于将 JavaScript 与 XML 结合，解析时碰到`<`符号就进行 XML 解析，碰到`{`符号就进行 JavaScript 解析。注意JSX在编译的时候会自动调用`React.createElement`，所以在使用的`JSX`语法的时候需要引入`React`库。如：
+1. **概念**：`JSX` 是 `React` 定义的，是 `React.createElement()` 的语法糖，用于将 `JavaScript` 与 `XML` 结合，解析时碰到 `<` 符号就进行 `XML` 解析，碰到 `{` 符号就进行 `JavaScript` 解析。注意 `JSX` 在编译的时候会自动调用`React.createElement`，所以在使用的 `JSX` 语法的时候需要引入 `React` 库。如：
 
    ```react
    //JSX写法
@@ -35,7 +35,7 @@
    function Ex() {return <Obj.One name="aioverg" />}
    ```
 
-3. 通过`...`运算符可以在 JSX 中传递整个`props`对象，如：
+3. 通过`...`运算符可以在 `JSX` 中传递整个 `props` 对象，如：
 
    ```react
    import React from 'react'
@@ -44,10 +44,10 @@
    }
    function Two(){
        const props = {one: "hello", two: "world"}
-       return <One {...props} />//将对象props传给组件One
+       return <One {...props} /> //将对象props传给组件One
    }
    ```
 
-4. Javascript代码和变量要用`{}`包裹起来
+4. Javascript代码和变量要用 `{}` 包裹起来。
 
-5. 当子元素是`false`、`null`、`undefined`、`true`时，且这些值作为变量被`{}`包裹时，不会渲染。
+5. 当子元素是 `false`、`null`、`undefined`、`true` 时，且这些值作为变量被`{}`包裹时，不会渲染。
