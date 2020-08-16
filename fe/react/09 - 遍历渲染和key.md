@@ -2,73 +2,57 @@
 
 ##### 简介
 
-1. **概念**：将需要遍历的数据组成由元素包裹的dom，然后把这些dom组成数组返回，render可以接受由dom组成的数组，并按顺序渲染这些dom。在每一个由遍历渲染的元素上设置`key`属性，可以帮助React识别元素的变动。
+`render` 可以接受由 `DOM` 组成的数组，并按顺序渲染这些 `DOM` 。在每一个由遍历渲染的元素上设置`key` 属性，可以帮助 `React` 识别元素的变动。所以遍历渲染的基本思想是渲染由 `DOM` 组成的数组。
 
-##### 使用
+##### 示例
 
-1. 遍历数组渲染
+```react
+<!DOCTYPE >
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>React</title>
+		<!--引入react-->
+		<script src="react.development.js"></script>
+		<!--引入react-dom-->
+		<script src="react-dom.development.js"></script>
+		<!--引入babel，用以识别转义JSX-->
+		<script src="babel.min.js"></script>
+	</head>
+	<body>
+		<div id="root">占位</div>
+	</body>
+	<!--转义JSX-->
+	<script type="text/jsx">
+	    const root = document.getElementById('root')
+		
+		class Ex extends React.Component {
+		    static defaultProps = { //设置默认的props值
+			    list: [1,2,3]
+			}
+		    constructor(props){
+			    super(props)
+			}
+			render(){
+			    return (
+			        <div>
+                        //列表渲染，map()会返回一个由<h2></h2>组成的dom数组
+					    {this.props.list.map((item) => <h2 key={item}>{item}</h2>)}
+                        
+                        //列表渲染，直接使用数组进行渲染
+                        {[
+                            <h2 key="one">hello</h2>,
+                            <h2 key="two">world</h2>
+                        ]}
+				    </div>
+				)
+			}
+		}
+		
+		ReactDOM.render(<Ex list={[4,5,6]}/>, root)
+    </script>
+</html>
+```
 
-   ```react
-   //在One.js文件中定义One组件
-   import React from 'react'
-   function One(props){
-       let arr = props.arr
-       let listDom = arr.map(//遍历数组生成dom数组
-           (value) => <p key={value}>{value}</p>//要设置key属性
-       )
-       return listDom//将dom数组返回，由节点组成的数组会被渲染
-   }
-   One.defaultProps = {//定义默认参数
-       arr: [1, 2, 3]
-   }
-   export default One
-   
-   //在index.js文件中引入One组件
-   import React from 'react'
-   import ReactDOM from 'react-dom'
-   import One from './One'//导入组件
-   let arr = ["one", "two", "thr"]
-   ReactDOM.render(//在index.html中挂载One组件
-       <One arr={arr}>,
-        document.getElementById('root')
-   )
-   ```
 
-2. 遍历对象渲染
 
-   ```react
-   //在One.js文件中定义One组件
-   import React from 'react'
-   
-   function One(props){
-       let obj = props.obj
-       let listObj = Object.keys(obj).map(//返回对象的键组成的数组，然后同遍历数组渲染
-           (key) => <p key={key}>{obj[key]}</p>//要设置key属性
-       )
-       return listDom//将dom数组返回，由节点组成的数组会被渲染
-   }
-   One.defaultProps = {//定义默认参数
-       obj: {
-           "one": 111,
-           "two": 222,
-           "thr": 333,
-       }
-   }
-   export default One
-   
-   //在index.js文件中引入One组件
-   import React from 'react'
-   import ReactDOM from 'react-dom'
-   import One from './One'//导入组件
-   let obj = {
-       "one": "aaa",
-       "two": "bbb",
-       "thr": "ccc",
-   }
-   ReactDOM.render(//在index.html中挂载One组件
-       <One obj={obj}>,
-        document.getElementById('root')
-   )
-   ```
-
-   
