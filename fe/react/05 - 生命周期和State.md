@@ -68,6 +68,8 @@
 
 ##### State
 
+`State` 是在组件内被组件组件管理的（类似于函数内声明的变量），当使用 `setState()` 对 `State` 进行改变时，组件会重新渲染。
+
 1. 不要直接修改 `state` ，例如 `this.state.name = "hello"` 不会重新渲染组件；应该使用 `setState()` ，例如：`this.setState({name: "hello"})` 。
 
 2. `State` 的更新可能是异步的，即处于性能考虑，`React` 可能会把多个 `setState()` 合并成一个调用。因为 `this.props` 和 `this.state` 可能会异步更新，所以当依赖他们的值更新下一个状态时，可能会出现错误。
