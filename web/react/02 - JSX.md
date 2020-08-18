@@ -2,7 +2,7 @@
 
 ##### 简介
 
-1. **概念**：`JSX` 是 `React` 定义的，是 `React.createElement()` 的语法糖，用于将 `JavaScript` 与 `XML` 结合，解析时碰到 `<` 符号就进行 `XML` 解析，碰到 `{` 符号就进行 `JavaScript` 解析。注意 `JSX` 在编译的时候会自动调用`React.createElement`，所以在使用的 `JSX` 语法的时候需要引入 `React` 库。如：
+1. **概念**：`JSX` 是 `React` 定义的，是 `React.createElement()` 的语法糖，用于将 `JavaScript` 与 `XML` 结合，解析时碰到 `<` 符号就进行 `XML` 解析，碰到 `{` 符号就进行 `JavaScript` 解析。由于 `JSX` 在编译的时候会自动调用`React.createElement`，所以在使用的 `JSX` 语法的时候需要引入 `React` 库。如：
 
    ```react
    //JSX写法
@@ -30,7 +30,9 @@
    ```react
    import React from 'react'
    const Obj = {//定义组件
-       One: function One(props) {return <p>my name is {props.name}</p>}
+       One: function One(props) {
+           return <p>my name is {props.name}</p>
+       }
    }
    function Ex() {return <Obj.One name="aioverg" />}
    ```

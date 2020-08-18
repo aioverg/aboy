@@ -55,4 +55,33 @@
 
    
 
-2. 
+2. `Props` 的默认值是 `true` ，即 `<Ex name />` 等价于 `<Ex name={true} />` ，注意不建议不传递 `value` 给 `props` ，即使可以使用默认值。
+
+3. 可以使用扩展运算符 `...` 传递对象，例如：
+
+   ```react
+   import React from 'react'
+   
+   let obj = {age: 10, name: "aioverg"}
+   
+   function Ex(props){
+       return(
+           <React.Fragment>
+               <h2>{props.age}</h2>
+               <h2>{props.name}</h2>
+           </React.Fragment>
+       )
+   }
+   
+   ReactDOM.render(<Ex {...a} />, root)
+   ```
+
+   
+
+4. 
+
+   ```react
+   
+   ```
+
+   
