@@ -26,11 +26,11 @@
 
 - **`createElement(type, [props], [...children])`** ：创建 `React` 元素，参数：
 
-  `type` ：是标签名称。
+  `type` ：标签名称。
 
-  `props` ：是标签属性。
+  `props` ：标签属性或者 `props` 数据。
 
-  `children` ：是子节点。
+  `children` ：子节点。
 
   例如：
 
@@ -85,13 +85,53 @@
 
 ##### 转换元素
 
-- **`cloneElement(element, [props], [..children])`**：克隆一个元素，并返回一个新的元素参数：
+- **`cloneElement(element, [props], [..children])`**：克隆一个元素，并返回一个新的元素（保留旧元素的props和ref，若有冲突则覆盖掉），参数：
 
   `element` ：被克隆的元素。
 
-  `props` ：新元素的 `props` 。
+  `props` ：新元素的标签属性或者 `props` 数据。
 
   `children` ：新元素的子元素。
+
+  示例：
+
+  ```react
+  <!DOCTYPE >
+  <html>
+  	<head>
+  		<meta charset="utf-8" />
+  		<title>React</title>
+  		<!--引入react-->
+  		<script src="react.development.js"></script>
+  		<!--引入react-dom-->
+  		<script src="react-dom.development.js"></script>
+  		<!--引入babel，用以识别转义JSX-->
+  		<script src="babel.min.js"></script>
+  	</head>
+  	<body>
+  		<div id="root">占位</div>
+  	</body>
+  	<script>
+  		
+  	</script>
+  	<!--转义JSX-->
+  	<script type="text/jsx">
+  	    const root = document.getElementById('root')
+  
+  		class Ex extends React.Component {
+  		    render(){
+  			    let one = React.createElement('h2', {className: 'one'}, this.props.name)//创建一个元素
+  			    return React.cloneElement(one, {className: "ex"}, <em>Ex</em>)//克隆one元素，并使用<em>标签替换子元素，使用将className的值改为ex。
+  			}
+  		}
+  
+  		ReactDOM.render(<Ex />, root)
+  
+      </script>
+  </html>
+  ```
+
+  
 
 - **`isValidElement()`**
 
