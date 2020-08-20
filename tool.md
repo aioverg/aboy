@@ -17,16 +17,17 @@
 - Windows、office破解工具：KMS
 - Adobe集合破解工具：amtemu
 - 压缩工具：7-Zip
-- shadowsocks：https://portal.shadowsocks.nz
+- VPN：[shadowsocks ](https://portal.shadowsocks.nz) 
 
 ##### 账号密码：h、s、.
 
-- QQ - 1010998682：密码一(英文混合数字)
-- QQ - 921075460：密码二(英文混合数字)
-- Outlook - aioverg@outlook.com：密码二(英文混合数字)
-- Gmial - aioevrg@gmail.com：密码二(英文混合数字加特殊字符)
-- 小米 - 1010998682@qq.com：密码二(英文混合数字)
-- 微信开放平台 - aioevrg@gmail.com：密码一(英文混合数字)
+- QQ - 1010998682 - 密码一(英文混合数字)
+- QQ - 921075460 - 密码二(英文混合数字)
+- Outlook - aioverg@outlook.com - 密码二(英文混合数字) - 安全手机（2614）
+- google - aioverg@outlook.com - 密码二
+- GitHub - aioverg@outlook.com - 密码一(英文大小写混合数字)
+- VPN（shadowsocks）-  aioverg@outlook.com / 1010998682@qq.com - 密码一
+- 小米 - 1010998682@qq.com - 密码二(英文混合数字)
 - 微信 - z1010998682：密码一(英文混合数字)
 - 微信公众号 - 爱美丫丫- 1010998682@qq.com
 - 微信小程序 - 丫丫的藏宝盒 -  wxaimeiyaya@163.com - 密码一
@@ -34,9 +35,10 @@
 - 企鹅号 - 1010998682@qq.com
 - 头条号 - 1010998682@qq.com
 - 百家号 - 1010998682@qq.com
-- 支付宝 - 1010998682@qq.com - 13750892614：密码一(英文大小写混合数字)
-- GitHub - 1010998682@qq.com - 密码一(英文大小写混合数字)
+- 支付宝 - 1010998682@qq.com - 13750892614 - 密码一(英文大小写混合数字)
 - 百度云服务器：实例 - aioverg - 密码一@
+- [学信网](https://account.chsi.com.cn/) - 手机2614 / 身份证 - 密码二（英文混合数字） - 安全邮箱 aioverg@outlook.com
+- 百度 - aioverg | aioverg@outlook.com | 13750892614 - 密码一
 
 ##### other
 
