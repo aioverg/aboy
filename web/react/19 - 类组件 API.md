@@ -66,16 +66,45 @@ class Ex extends React.Component {
 
   参数说明：
 
-  `updater`：
+  1. `updater` ：当 `updater` 是一个对象的时候，如： `setState({name: "aioverg"}, [callback])`，会将对象浅合并到新的 `state` 中，当参数相同时后来的覆盖先前的。
 
-- **`forceUpdate()`**
+     当 `updater` 为函数时，接受两个参数，需要返回对象作为更新的 `state` ，如：`f(state, props)` ，其中 `state` 是变化时组件的状态（即之前的 `state`），`props` 可以随意指定。
+
+  2. `callback` ：回调函数，会在 `setState` 完成合并并重新渲染组件后执行，可以在这里获取更新后的 `state`、`DOM` 等（推荐使用 `componentDidUpdate` 进行此操作）。
+
+- **`forceUpdate()`** ：强制让组件重新渲染。
 
 ##### class 属性
 
-- **`defaultProps`**
-- **`displayName`**
+- **`defaultProps`**：为组件添加默认的 `props`，例如：
+
+  ```react
+  class Ex extends React.Component {
+      static defaultProps = { //设置props的默认值
+          name: "aioverg"
+      }
+      constructor(props){
+          super(props)
+      }
+      render() {}
+  }
+  
+  //或者
+  
+  class Ex extends React.Component {
+      constructor(props){
+          super(props)
+      }
+      render() {}
+  }
+  Ex.defaultProps = { //设置Ex组件的props的默认值
+      name: "aioverg"
+  }
+  ```
+
+- **`displayName`** ：多用于调试消息，一般不需要设置，它会根据组件的名称推断出来。
 
 #### 实例属性
 
-- **`props`**
-- **`state`**
+- **`props`** ：`this.props` 包含被改组件调用者定义的 `props` ，注意，`this.props.children` 是一个特殊的 `prop` ，通常由 `JSX` 表达式中子组件组成，而非组件本身定义的。
+- **`state`** ：包含了随时间发生变化的数据，由用户自定义，是一个普通的 `JavaScript` 对象。
