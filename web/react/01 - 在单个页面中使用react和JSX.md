@@ -1,6 +1,6 @@
 #### 在单个页面中使用react和JSX
 
-##### 一般组件示例
+##### 使用React元素示例
 
 ```html
 <!DOCTYPE >
@@ -20,15 +20,17 @@
 	</body>
     <!--type="text/jsx"识别转义JSX-->
 	<script type="text/jsx">
-	    //定义一般组件
+	    const root = document.getElementById('root')
+	
+	    //定义React元素
 	    let one = "one"
 	    const element = (
 		    <div>
 		        <h1 style={{color: "blue"}}>{one}</h1>
 			    <h1 style={{color: "blue"}}>two</h1>
 			</div>
-		);
-		ReactDOM.render(element, document.getElementById('root'));
+		)
+		ReactDOM.render(element, root)
     </script>
 </html>
 ```
@@ -53,8 +55,10 @@
 	</body>
     <!--type="text/jsx"识别转义JSX-->
 	<script type="text/jsx">
+	    const root = document.getElementById('root')
+	    
 	    //定义函数组件，props用于传值
-		function Hello(props){
+		function Ex(props){
 		    return (
 			    <div>
 			        <h1>{props.name}</h1>
@@ -62,9 +66,8 @@
 				</div>
 			)
 		}
-		const element = <Hello name="one" />
 		
-		ReactDOM.render(elememt, document.getElementById('root'));
+		ReactDOM.render(<Ex name="one" />, root);
     </script>
 </html>
 ```
@@ -89,12 +92,14 @@
 	</body>
     <!--type="text/jsx"识别转义JSX-->
 	<script type="text/jsx">
+	    const root = document.getElementById('root')
+	
 	    //定义类组件，props用于传值
-	    class Hello extends React.Component {
+	    class Ex extends React.Component {
 	        constructor(props){
 	            super(props)
 	            //this.state用于存放本地的值
-				this.state = {name: "one"}
+				this.state = {one: "one"}
 			}
 		    render(){
 		        return (
@@ -106,9 +111,8 @@
 				)
 		    }
 		}
-		const element = <Hello two="two"/>
 		
-		ReactDOM.render(element, document.getElementById('root'));
+		ReactDOM.render(<Ex two="two"/>, root);
     </script>
 </html>
 ```

@@ -2,7 +2,7 @@
 
 ##### 简介
 
-1. **概念**：`JSX` 是 `React` 定义的，是 `React.createElement()` 的语法糖，用于将 `JavaScript` 与 `XML` 结合，解析时碰到 `<` 符号就进行 `XML` 解析，碰到 `{` 符号就进行 `JavaScript` 解析。由于 `JSX` 在编译的时候会自动调用`React.createElement`，所以在使用的 `JSX` 语法的时候需要引入 `React` 库。如：
+1. **概念**：`JSX` 是 `React` 定义的一个 `JavaScript` 语法扩展，是 `React.createElement()` 的语法糖，用于将 `JavaScript` 与 `XML` 结合，解析时碰到 `<` 符号就进行 `XML` 解析，碰到 `{` 符号就进行 `JavaScript` 解析。由于 `JSX` 在编译的时候会自动调用`React.createElement`，所以在使用的 `JSX` 语法的时候需要引入 `React` 库。如：
 
    ```react
    //JSX写法
@@ -23,31 +23,38 @@
 
 ##### 使用
 
-1. 组件名需要以大写字母开头，因为 React 会把不是大写字母开头的组件认为是一个 HTML 标签。
+1. 组件名需要以大写字母开头，因为 `React` 会把不是大写字母开头的组件认为是一个 `HTML` 标签。
 
 2. 组件可以是对象的值，如
 
    ```react
-   import React from 'react'
-   const Obj = {//定义组件
-       One: function One(props) {
-           return <p>my name is {props.name}</p>
+   <script type="text/jsx">
+       const root = document.getElementById('root')
+       
+       const Ex = {
+           one: function(props){
+               return (<h2>{props.name}</h2>)
+           }
        }
-   }
-   function Ex() {return <Obj.One name="aioverg" />}
+       
+       ReactDOM.render(<Ex.one name="aioverg"/>, root);
+   </script>
    ```
 
-3. 通过`...`运算符可以在 `JSX` 中传递整个 `props` 对象，如：
+3. 通过 `...` 运算符可以在 `JSX` 中传递整个 `props` 对象，如：
 
    ```react
-   import React from 'react'
-   function One(props) {
-       return(<p>{props.one}{props.two}</p>)
-   }
-   function Two(){
-       const props = {one: "hello", two: "world"}
-       return <One {...props} /> //将对象props传给组件One
-   }
+   <script type="text/jsx">
+       const root = document.getElementById('root')
+   	    
+       function Ex(props){
+           return (<h2>{props.age}{props.name}</h2>)
+       }
+       
+       const obj = {age: 10, name: "aioverg"}
+       
+       ReactDOM.render(<Ex {...obj} />, root);
+   </script>
    ```
 
 4. Javascript代码和变量要用 `{}` 包裹起来。
