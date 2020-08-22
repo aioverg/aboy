@@ -1,6 +1,6 @@
 #### name属性及动态组件
 
-`export default{name: 'XXX'}`的作用
+`export default {name: 'XXX'}`的作用
 
 1. 组件自身的递归调用，例如：
 
@@ -21,7 +21,7 @@
    </script>
    ```
 
-2. 使用<keep-live>指定哪些组件会被缓存，哪些组件不会被缓存。<keep-live>的`include`属性用来指定需要缓存的组件的组件名，`exclude`属性用来指定不需要缓存的组件的组件名。例如：
+2. 使用 `<keep-live>` 指定哪些组件会被缓存，哪些组件不会被缓存。`<keep-live>` 的 `include` 属性用来指定需要缓存的组件的组件名，`exclude`属性用来指定不需要缓存的组件的组件名。例如：
 
    ```html
    <!--这也是一个动态组件的例子-->
@@ -47,21 +47,23 @@
    </body>
    
    <script>
-   //在Vue.component()中id会被动注册为组件名
-   Vue.component('one', { 
-   	template: '<input placeholder="one">' 
-   })
-   Vue.component('two', { 
-   	template: '<input placeholder="two">' 
-   })
-   Vue.component('thr', { 
-   	template: '<input placeholder="thr">' 
-   })
+       //在Vue.component()中id会被动注册为组件名
+       Vue.component('one', { 
+           template: '<input placeholder="one">'
+       })
+       
+       Vue.component('two', { 
+           template: '<input placeholder="two">'
+       })
    
-   new Vue({
-     el: '#app',
-     data: {name: 'one'},
-   })
+       Vue.component('thr', { 
+           template: '<input placeholder="thr">'
+       })
+   
+       new Vue({
+           el: '#app',
+           data: {name: 'one'},
+       })
    </script>
    </html>
    ```

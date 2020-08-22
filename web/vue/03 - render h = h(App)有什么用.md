@@ -21,4 +21,4 @@ render: h => h(App)
 
 ##### 作用
 
-渲染App组件。Vue.js中的createElement函数的作用是生成VNode节点，render函数得到VNode后，渲染成真实DOM，并挂载。
+渲染App组件。`Vue.js` 中的 `createElement()` 的作用是生成 `VNode` 节点，`render()` 得到 `VNode` 后，渲染成真实 `DOM` ，并挂载。

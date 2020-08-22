@@ -1,8 +1,8 @@
 #### Loader基础
 
-**概念：**Vue Loader是一个webpack的loader，运行以一种名为单文件组件（SFCs）的格式撰写vue组件。
+**概念：**Vue Loader 是一个 webpack 的 loader ，运行以一种名为单文件组件（SFCs）的格式撰写vue组件。
 
-**单文件组件（SFCs）规范：**.vue文件是一个自定义的文件类型，用类HTML语法描述一个Vue组件。每个.vue文件包含三种类型的顶级语言块```<template>、<script>、<style>```，还允许添加可先的自定义块，如：
+**单文件组件（SFCs）规范：** `.vue` 文件是一个自定义的文件类型，用类 `HTML` 语法描述一个 `Vue` 组件。每个 `.vue` 文件包含三种类型的顶级语言块 `<template>、<script>、<style>`，还允许添加其他的自定义块，如：
 
 ```html
 <template>

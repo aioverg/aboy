@@ -5,18 +5,19 @@
 ```javascript
 //创建Vuex实例
 const store = new Vuex.store({//每个Vue项目仅包含一个Vuex实例
-    state: {//状态，也就说数据
+    state: {//状态，也就是数据
         one: 'hello'
     },
     getter: {//相当于Vue中的计算属性，当state中的值变化的时候会跟着更新
         two: state => {return "hello" + state.one}
     },
-    mutation: {//操作状态的函数，vuex只能通过mutation操作数据，mutation只能包含同步任务
+    mutation: {//操作状态的函数，用于修改state，只能包含同步任务
         say(state){
+            state.one = "world"
             console.log(state.one)
         }
     },
-    actions: {//actions可以包含任意的异步任务，它用来提交mutation，也可以访问state、gettes
+    actions: {//可以包含任意的异步任务，用来提交mutation，也可以访问state、getter
         fn(context){
             context.commit('say')
         }
@@ -145,7 +146,7 @@ export default {
 //组件使用vuex 方法二暂略
 ```
 
-**概念：**Vuex是一个专为Vue.js开发的状态管理模式，采用集中式存储管理应用的组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+**概念：**Vuex 是一个专为 Vue.js 开发的状态管理模式，采用集中式存储管理应用的组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
 
 ##### 一个简单的Vuex实例
 
@@ -161,8 +162,8 @@ const store = new Vuex.Store({
 
 ##### 名词
 
-- state：用于存储状态。相当于Vue中的data。
-- getters：用于存储状态。相当于Vue中的计算属性computed。
-- mutation：用于修改state，state只能使用mutation修改。且不能包含异步操作。
-- action：与mutation类似，当可以包含异步操作。
-- module：用于引入模块的Vuex。
+- `state`：用于存储状态。相当于 `Vue` 中的 `data`。
+- `getters`：用于存储状态。相当于 `Vue` 中的计算属性 `computed`。
+- `mutation`：用于修改 `state`，`state` 只能使用 `mutation` 修改。且不能包含异步操作。
+- `action`：与 `mutation` 类似，当可以包含异步操作。
+- `module`：用于引入模块的 `Vuex`。
