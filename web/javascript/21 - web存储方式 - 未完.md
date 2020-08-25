@@ -4,13 +4,13 @@
 
 2. ##### Cookie
 
-   - 简介：Cookie是一些数据，存储在内存中或计算机的文本文件中，用于记录从服务端传回的数据，如用户信息，连接口令等。Cookie可以设置过期时间，如果没有设置过期时间，Cookie会被保存在内存中，生命周期随着浏览器的关闭而结束，此时的Cookie称为会话Cookie；如果设置了过期时间，Cookie会被保存在硬盘的文件中，文件到过期时间才会消失。
+   - 简介：Cookie 是一些数据，存储在内存中或计算机的文本文件中，用于记录从服务端传回的数据，如用户信息，连接口令等。Cookie 可以设置过期时间，如果没有设置过期时间，Cookie 会被保存在内存中，生命周期随着浏览器的关闭而结束，此时的 Cookie 称为会话 Cookie ；如果设置了过期时间，Cookie 会被保存在硬盘的文件中，文件到过期时间才会消失。
 
    - 特点：
 
-     1. Cookie只能保存字符串类型。
-     2. 单个Cookie保存的数据不能超过4kb。
-     3. 存在Cookie欺骗、Cookie截获等安全问题。
+     1. Cookie 只能保存字符串类型。
+     2. 单个 Cookie 保存的数据不能超过 4kb。
+     3. 存在 Cookie 欺骗、Cookie 截获等安全问题。
 
    - 方法
 
@@ -30,9 +30,9 @@
 
 3. ##### WebStorage
 
-   - 概念：WebStorage是为了弥补Cookie的缺点而创造的存储方法，包括`localStorage`和`sessionStorage`两种。其中`sessionStorage`用来临时存储同一窗口的数据，在窗口关闭后数据会被自动删除；`localStorage`用于永久保存数据，数据会被保存在客户端本地的硬件设备中，计算浏览器关闭了数据也不会被删除，下次浏览器访问网站时仍可以继续使用。
+   - 概念：WebStorage 是为了弥补 Cookie 的缺点而创造的存储方法，包括 `localStorage` 和 `sessionStorage` 两种。其中 `sessionStorage` 用来临时存储同一窗口的数据，在窗口关闭后数据会被自动删除；`localStorage` 用于永久保存数据，数据会被保存在客户端本地的硬件设备中，计算浏览器关闭了数据也不会被删除，下次浏览器访问网站时仍可以继续使用。
 
-   - `sessionStorage`方法
+   - `sessionStorage` 方法
 
      ```javascript
      //查看sessionStorage
@@ -51,7 +51,7 @@
      sessionStorage.clear()
      ```
 
-   - `localStorage`方法
+   - `localStorage` 方法
 
      ```javascript
      //查看localStorage

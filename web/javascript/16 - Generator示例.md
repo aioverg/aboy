@@ -10,7 +10,7 @@ function* example(args){  //function关键字与函数名之间的*号是Generat
     let arg = yield 'two'  //下一个yield的next传入的参数会作为本次yield的返回值，
     console.log(arg)
     yield 'thr'  //可以向next()传入参数，参数会作为上一个yield的返回值。
-    return 'ending'  //next()方法走到这里终止，状态不在改变
+    return 'ending'  //next()方法走到这里终止，状态不再改变
 }
 const ex1 = example('one')  //传入参数，并运行Generator
 ex1.next( res => {console.log(res)})  //执行一个yield之前的代码，并接受yield的返回值

@@ -1,8 +1,8 @@
 #### XMLHttpRequest对象
 
-**概念：**XMLHttpRequest对象是JavaScript定义的用于与服务器通信的对象。所有的浏览器都有内建的XMLHttpRequest对象。
+**概念：**`XMLHttpRequest` 对象是 `JavaScript` 定义的用于与服务器通信的对象。所有的浏览器都有内建的 `XMLHttpRequest` 对象。
 
-**构造函数：**`XMLHttpRequest()`，例如，初始化一个XMLHttpRequest对象：`new XMLHttpRequest()`。
+**构造函数：**`XMLHttpRequest()` ，例如，初始化一个 `XMLHttpRequest` 对象：`new XMLHttpRequest()`。
 
 ##### 实例属性、实例方法：暂略
 
@@ -29,7 +29,7 @@
    xhr.send()  //发送求情
    ```
 
-2. 封装XMLHttpRequest
+2. 封装 `XMLHttpRequest`
 
    ```javascript
    const http = {

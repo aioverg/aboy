@@ -2,7 +2,7 @@
 
 ##### 定义
 
-this：this指的是函数运行时所在的环境。
+this：`this` 指的是函数运行时所在的环境。
 
 ##### this绑定
 
@@ -40,28 +40,28 @@ this：this指的是函数运行时所在的环境。
    var a = 10; // a 是全局对象的属性 
    function f(){console.log(this.a)} 
    function g(callback) {// callback其实引用的是f， 
-       callback(); // <-- 调用位置！
+       callback() // <-- 调用位置！
    } 
    var obj ={
        a: 2,
        f: f
-   }; 
-   doFoo( obj.f ); //输出10
+   }
+   g( obj.f ) //输出10
    ```
 
    
 
-3. 显示绑定：通过call,apply,bind的方式，显式的指定this所指向的对象。
+3. 显示绑定：通过 `call` , `apply` , `bind` 的方式，显式的指定 `this` 所指向的对象。
 
-   -  ```function.call(object, args···)```：将函数function作为对象object的方法调用，args作为参数传递给函数。例：
+   -  `function.call(object, args···)`：将函数 `function` 作为对象 `object` 的方法调用，`args` 作为参数传递给函数。例：
 
      ```javascript
      var obj = {name: "hello"}
      function f(argone, argtwo){alert(this.name + argone + argtwo)}
-     f.call(obj, ".world", "!")  //  hello.world
+     f.call(obj, ".world", "!")  //  hello.world!
      ```
 
-   - ```function.bind(object, args```：返回一个新函数，该函数会作为object的方法调用，args是旧函数function的参数。例：
+   - `function.bind(object, args)`：返回一个新函数，该函数会作为 `object` 的方法调用，`args` 是旧函数 `function` 的参数。例：
 
      ```javascript
      var obj = {name: "hello"}
@@ -70,7 +70,7 @@ this：this指的是函数运行时所在的环境。
      ff("!")  //  hello.world!
      ```
 
-   - ```function.apply(object, args)```：将函数function作为对象object的方法调用，args作为参数传递给函数，注意，apply的参数args只能是数组。例：
+   - `function.apply(object, args)`：将函数 `function` 作为对象 `objec` t的方法调用，`args` 作为参数传递给函数，注意，`apply` 的参数 `args` 只能是数组。例：
 
      ```javascript
      var obj = {name: "hello"}
@@ -78,7 +78,7 @@ this：this指的是函数运行时所在的环境。
      f.apply(obj, [".hello", "!"])  //  hello.hello!
      ```
 
-4.  new绑定：this指向的就是对象本身。
+4.  `new` 绑定：`this` 指向的就是对象本身。
 
    ```javascript
    function F(name){this.name = name}
@@ -92,14 +92,14 @@ this：this指的是函数运行时所在的环境。
    
    - 创建（或者说构造）一个全新的对象。 
    - 这个新对象会被执行 [[ 原型 ]] 连接。
-   - 这个新对象会绑定到函数调用的 this。
-   - 如果函数没有返回其他对象，那么 new 表达式中的函数调用会自动返回这个新对象。
+   - 这个新对象会绑定到函数调用的 `this`。
+   - 如果函数没有返回其他对象，那么 `new` 表达式中的函数调用会自动返回这个新对象。
 
 ##### 绑定优先级
 
-如果同时应用了多种规则，四种绑定的优先级为：new绑定 > 显式绑定 > 隐式绑定 > 默认绑定。
+如果同时应用了多种规则，四种绑定的优先级为：`new` 绑定 > 显式绑定 > 隐式绑定 > 默认绑定。
 
 ##### 例外
 
-1. 将null或者是undefined作为this的绑定对象传入call、apply或者是bind,这些值在调用时会被忽略，实际应用的是默认绑定规则。
-2. 箭头函数没有自己的this，它的this继承于外层代码库中的this。
+1. 将 `null` 或者是 `undefined` 作为 `this` 的绑定对象传入 `call` 、 `apply` 或者是 `bind` ，这些值在调用时会被忽略，实际应用的是默认绑定规则。
+2. 箭头函数没有自己的 `this` ，它的 `this` 继承于外层代码库中的 `this` 。
