@@ -1,8 +1,8 @@
 #### URI与URL
 
-1. URI统一资源标识符是Uniform Resource Identifier 的缩写，URI 用字符串标识某一互联网资源。
+1. URI 统一资源标识符是 Uniform Resource Identifier 的缩写，URI 用字符串标识某一互联网资源。
 
-2. URL统一资源定位符是Uniform Resource Locator 的缩写，URL 表示资源的地点，是URI的子集。
+2. URL 统一资源定位符是 Uniform Resource Locator 的缩写，URL 表示资源的地点，是 URI 的子集。
 
 3. 格式：
 

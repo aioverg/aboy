@@ -20,7 +20,7 @@
    </object>
    ```
 
-4. 使用<iframe>标签
+4. 使用 `<iframe>` 标签
 
    ```html
    <iframe src='name.svg'>
@@ -28,13 +28,13 @@
    </iframe>
    ```
 
-5. 使用<embed>标签
+5. 使用 `<embed>` 标签
 
    ```html
    <embed type='image/svg+xml' src='name.svg' />
    ```
 
-6. 使用内联<svg>标签
+6. 使用内联 `<svg>` 标签
 
    ```html
    <svg><!--svg内容--></svg>

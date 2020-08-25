@@ -40,7 +40,7 @@
            super(x)  //调用父类One的构造函数，每个继承的类必须有，super()做函数使用时指向父类的构造函数
            this.args = args
        }
-       f(arg){  //父子命名方法父方法会被覆盖
+       f(arg){  //父子同名方法父方法会被覆盖
            super.f(arg)  //调用父类中的f方法，super作为对象时，在普通方法中指向父类的原型对象，在静态方法中，指向父类。
            console.log(arg, this.args)
        }
@@ -69,11 +69,11 @@ ex.f()  //输出：hello
 ex.g()  //输出：world
 ```
 
-##### constructor方法
+##### constructor 方法
 
-constructor方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。一个类必须有constructor方法，如果没有显示定义，JS将默认创建一个空的constructor方法。
+`constructor` 方法是类的默认方法，通过 `new` 命令生成对象实例时，自动调用该方法。一个类必须有`constructor` 方法，如果没有显示定义，`JavaScript` 将默认创建一个空的 `constructor` 方法。
 
-constructor方法默认返回实例对象（即this），完全可以指定返回另外一个对象，例如：
+`constructor` 方法默认返回实例对象（即 `this`），完全可以指定返回另外一个对象，例如：
 
 ```javascript
 class one{
@@ -91,9 +91,9 @@ new one() instanceof one  //输出：false
 1. 类默认使用严格模式。
 2. 不存在变量提升，即不能在类声明前使用类。
 
-##### extends继承
+##### extends 继承
 
-extends：继承父类，例如：
+`extends` ：继承父类，例如：
 
 ```javascript
 class parent {
@@ -113,4 +113,4 @@ ex.g()  //输出：world
 
 概述：super关键字即可以作为函数使用也可以作为对象使用。当super作为函数调用时，代表父类的构造函数。super作为对象时，在普通方法中指向父类的原型对象；在静态方法中指向父类。
 
-##### `new.target`属性
+##### `new.target` 属性
