@@ -25,8 +25,8 @@
 - QQ - 921075460 - 密码二(英文混合数字)
 - Outlook - aioverg@outlook.com - 密码二(英文大小写混合数字) - 安全手机（2614）
 - google - aioverg@outlook.com - 密码二
-- GitHub - aioverg@outlook.com - 密码一(英文大小写混合数字)
-- VPN（shadowsocks）-  aioverg@outlook.com / 1010998682@qq.com - 密码一
+- GitHub - 1010998682@qq.com - 密码一(英文大小写混合数字)
+- VPN（shadowsocks）-  1010998682@qq.com - 密码一
 - 小米 - 1010998682@qq.com - 密码二(英文混合数字)
 - 微信 - z1010998682：密码一(英文混合数字)
 - 微信公众号 - 爱美丫丫- 1010998682@qq.com
@@ -37,7 +37,7 @@
 - 百家号 - 1010998682@qq.com
 - 支付宝 - 1010998682@qq.com - 13750892614 - 密码一(英文大小写混合数字)
 - 百度云服务器：实例 - aioverg - 密码一@
-- [学信网](https://account.chsi.com.cn/) - 手机2614 / 身份证 - 密码二（英文混合数字） - 安全邮箱 aioverg@outlook.com
+- [学信网](https://account.chsi.com.cn/) - 手机2614 / 身份证 - 密码一（英文混合数字加@） - 安全邮箱 1010998682@qq.com
 - 百度 - aioverg | aioverg@outlook.com | 13750892614 - 密码一
 
 ##### other
