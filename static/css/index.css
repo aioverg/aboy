@@ -1,5 +1,9 @@
 /* 网站页面样式 */
 
+[v-cloak] {
+    display: none;
+}
+
 body {
     background-color: #f7f7f7;
     font-size: 16px;

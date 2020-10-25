@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="./static/index.css">
+	<link rel="stylesheet" href="./static/css/index.css">
 	<title>荆棘之旅</title>
 </head>
 
@@ -12,7 +12,7 @@
 	<div class="content">
 		<!--标题-->
 		<div class="blog-title">荆棘之旅</div>
-		<div id="app">
+		<div id="app" v-cloak>
 			<!--顶部菜单栏-->
 			<div class="nav">
 				<router-link to="/" v-on:click.native="menu('index')">首页</router-link>
@@ -21,11 +21,11 @@
 				<router-link to="/music" v-on:click.native="menu('music')">音乐</router-link>
 			</div>
 			<!--“首页” 菜单内容-->
-			<div v-show="!info.menuContent">
+			<div v-if="!info.menuContent">
 				我是首页，什么都没有
 			</div>
 			<!--其他菜单内容-->
-			<div v-show="info.menuContent">
+			<div v-if="info.menuContent">
 				<!--标签-->
 				<div class="menu-tags">
 					<span class="menu-tag" :class="info.selTag==index?'red':null" v-for="(item, index) in menuTags" @click="tag(item, index)">
@@ -56,8 +56,8 @@
 		<a href="http://www.beian.gov.cn">豫ICP备18032023号</a>
 	</div>
 </body>
-<script src="./static/vue.min.js"></script>
-<script src="./static/vue-router.js"></script>
+<script src="./static/js/vue.min.js"></script>
+<script src="./static/js/vue-router.js"></script>
 <!--前端-->
 <script src="./web/index.js"></script>
 <!--数学-->
@@ -195,7 +195,8 @@
 			}
 		},
 		//页面加载时调用
-		mounted: function () {//新增菜单需要在这个地方加一个判断
+		created: function () {//新增菜单需要在这个地方加一个判断
+		console.log(44444444)
 			let objInfo = JSON.parse(sessionStorage.getItem("info"))
 			if (objInfo) {
 				this.info = objInfo
