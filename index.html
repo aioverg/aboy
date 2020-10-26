@@ -14,6 +14,7 @@
 		<div class="blog-title">荆棘之旅</div>
 		<div id="app" v-cloak>
 			<!--顶部菜单栏-->
+			<div>{{nowDate}}</div>
 			<div class="nav">
 				<router-link to="/" v-on:click.native="menu('index')">首页</router-link>
 				<router-link to="/fe" v-on:click.native="menu('fe')">前端</router-link>
@@ -106,6 +107,7 @@
 				articleList: [],
 				menuTags: [],
 				menuName: [],
+				nowDate: ''
 			}
 		},
 		methods: {
@@ -192,11 +194,31 @@
 				}
 				let jsonInfo = JSON.stringify(this.info)
 				sessionStorage.setItem("info", jsonInfo)
+			},
+			getDate () {
+				let date = new Date().toLocaleDateString().replace(/\//g, '-')
+				let time = new Date().toLocaleTimeString()
+				if (time.includes('上午')) {
+					let hour = Number(time.slice(2,4)) - 12 + '0'
+					time = time.replace(/上午[0-9][0-9]/, hour)
+					this.nowDate = date + " " + time
+					return
+				}
+				if (time.includes('下午')) {
+					let hour = Number(time.slice(2,4)) + 12 + ''
+					time = time.replace(/下午[0-9][0-9]/, hour)
+					this.nowDate = date + " " + time
+					return
+				}
+
 			}
 		},
 		//页面加载时调用
 		created: function () {//新增菜单需要在这个地方加一个判断
-		console.log(44444444)
+		    this.getDate()
+		    setInterval(() => {
+				this.getDate()
+			}, 1000)
 			let objInfo = JSON.parse(sessionStorage.getItem("info"))
 			if (objInfo) {
 				this.info = objInfo
