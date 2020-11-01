@@ -11,10 +11,15 @@
 <body>
 	<div class="content">
 		<!--标题-->
-		<div class="blog-title">荆棘之旅</div>
+		<div class="blog-title">
+			<span>荆棘之旅</span>
+		</div>
 		<div id="app" v-cloak>
 			<!--顶部菜单栏-->
-			<div>{{nowDate}}</div>
+			<div class="date" v-show="!info.menuContent">
+				<span>{{nowDate}}</span>
+				<span class="day">{{day}}</span>
+			</div>
 			<div class="nav">
 				<router-link to="/" v-on:click.native="menu('index')">首页</router-link>
 				<router-link to="/fe" v-on:click.native="menu('fe')">前端</router-link>
@@ -22,7 +27,7 @@
 				<router-link to="/music" v-on:click.native="menu('music')">音乐</router-link>
 			</div>
 			<!--“首页” 菜单内容-->
-			<div v-if="!info.menuContent">
+			<div v-show="!info.menuContent">
 				我是首页，什么都没有
 			</div>
 			<!--其他菜单内容-->
@@ -107,7 +112,8 @@
 				articleList: [],
 				menuTags: [],
 				menuName: [],
-				nowDate: ''
+				nowDate: '',
+				day: ''
 			}
 		},
 		methods: {
@@ -196,17 +202,27 @@
 				sessionStorage.setItem("info", jsonInfo)
 			},
 			getDate () {
-				let date = new Date().toLocaleDateString().replace(/\//g, '-')
-				let time = new Date().toLocaleTimeString()
+				let nowDate = new Date() // 当前时间
+				let endDate = new Date("dec 1 2025 00:00:00") // 结束时间2025-12-1
+				let endTime = endDate.getTime() // 结束时间毫秒数
+				let nowTime = nowDate.getTime() // 当前时间毫秒数
+				this.day = Math.floor(((endTime - nowTime)/(60*60*24*1000))) // 剩余天数
+				let date = nowDate.toLocaleDateString().replace(/\//g, '-') // 获取当前时间日期
+				let time = nowDate.toLocaleTimeString() // 获取当前时间时间
 				if (time.includes('上午')) {
-					let hour = Number(time.slice(2,4)) - 12 + '0'
+					let hour = 0
+					if (Number(time.slice(2,4)) == 12) {
+						hour = Number(time.slice(2,4)) - 12 + '0'
+					} else {
+						hour = '0' + Number(time.slice(2,3))
+					}
 					time = time.replace(/上午[0-9][0-9]/, hour)
 					this.nowDate = date + " " + time
 					return
 				}
 				if (time.includes('下午')) {
-					let hour = Number(time.slice(2,4)) + 12 + ''
-					time = time.replace(/下午[0-9][0-9]/, hour)
+					let hour = Number(time.split(':')[0].slice(2)) + 12 + ''
+					time = time.replace(/下午[0-9]{1,2}/, hour)
 					this.nowDate = date + " " + time
 					return
 				}
