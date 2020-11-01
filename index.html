@@ -16,10 +16,6 @@
 		</div>
 		<div id="app" v-cloak>
 			<!--顶部菜单栏-->
-			<div class="date" v-show="!info.menuContent">
-				<span>{{nowDate}}</span>
-				<span class="day">{{day}}</span>
-			</div>
 			<div class="nav">
 				<router-link to="/" v-on:click.native="menu('index')">首页</router-link>
 				<router-link to="/fe" v-on:click.native="menu('fe')">前端</router-link>
@@ -28,6 +24,10 @@
 			</div>
 			<!--“首页” 菜单内容-->
 			<div v-show="!info.menuContent">
+				<div class="date">
+					<span>{{nowDate}}</span>
+					<span class="day">{{day}}</span>
+				</div>
 				我是首页，什么都没有
 			</div>
 			<!--其他菜单内容-->
