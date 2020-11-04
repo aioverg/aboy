@@ -4,20 +4,22 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../static/css/index.css">
-	<title>前端之旅</title>
+	<link rel="stylesheet" href="./static/css/index.css">
+	<title>CSS</title>
 </head>
 
 <body>
 	<div class="content">
 		<!--标题-->
 		<div class="blog-title">
-			<span>前端之旅</span>
+			<span>CSS</span>
 		</div>
 		<div id="app" v-cloak>
 			<!--顶部菜单栏-->
 			<nav class="nav">
-        <a href="./css/index.html">css</a>
+        <a href="./fe/index.html">前端</a>
+        <a href="./math/index.html">数学</a>
+        <a href="./music/index.html">音乐</a>
       </nav>
 			<!--“首页” 菜单内容-->
 			<div>
@@ -34,24 +36,19 @@
 		<a href="http://www.beian.gov.cn">豫ICP备18032023号</a>
 	</div>
 </body>
-<script src="../static/js/vue.min.js"></script>
+<script src="./static/js/vue.min.js"></script>
+<!--前端-->
+<script src="./web/index.js"></script>
+<!--数学-->
+<script src="./math/index.js"></script>
+<!--音乐-->
+<script src="./music/index.js"></script>
 
 <script>
 	new Vue({
 		el: "#app",
 		data: function () {
 			return {
-				info: {
-					selMenu: null,
-					tagName: null,
-					selTag: 0,
-					menuContent: false,
-					page: 0,
-					pages: 0,
-				},
-				articleList: [],
-				menuTags: [],
-				menuName: [],
 				nowDate: '',
 				day: ''
 			}
@@ -93,9 +90,5 @@
 			}, 1000)
 		}
 	})
-
-
 </script>
-
-
 </html>
