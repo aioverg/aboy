@@ -3,6 +3,9 @@
 [v-cloak] {
     display: none;
 }
+.header {
+    text-align: center;
+}
 
 body {
     background-color: #f7f7f7;
