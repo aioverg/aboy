@@ -1,0 +1,115 @@
+/* 网站页面样式 */
+
+[v-cloak] {
+    display: none;
+}
+
+body {
+    background-color: #f7f7f7;
+    font-size: 16px;
+}
+a {
+    display: inline-block;
+    color: #424242;
+    text-decoration: none;
+}
+.content {
+    background-color: #ffffff;
+    box-shadow: 0 10px 20px 0 rgba(236, 236, 236, 0.86);
+}
+.blog-title {
+    padding: 20px 0;
+    font-size: 24px;
+    text-align: center;
+}
+.date {
+    color:antiquewhite;
+}
+.day {
+    margin-left: 10px;
+}
+.nav {
+    display: flex;
+    justify-content: flex-end;
+
+}
+.content {
+    min-height: 600px;
+}
+.nav a {
+    padding: 10px;
+    font-weight: 500;
+}
+.router-link-exact-active {
+    color: red;
+}
+.menu-tags {
+    margin: 10px 0;
+    display: flex;
+	justify-content: center;
+    flex-wrap: wrap-reverse;
+}
+.menu-tags .red {
+    color: red;
+}
+.menu-tag {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    font-size: 14px;
+    color: #c0bfbf;
+    cursor: pointer;
+}
+.menu-tag:hover {
+    color: red;
+}
+.body ul {
+    list-style-type: none;
+    margin: 15px 0;
+    min-height: 365px;
+}
+.body li {
+    margin: 0 0 15px;
+}
+.body .page-box {
+    width: 100%;
+    
+    text-align: center;
+}
+.body .page-box .page {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+    user-select: none;
+    font-size: 15px;
+    color: #c0bfbf;
+}
+.body .page-box .page:hover {
+    color: red;
+}
+.footer {
+    text-align: center;
+    margin: 0 0 20px;
+    font-size: 13px;
+    color: #a19f9f;
+}
+.footer a {
+    color: #a19f9f;
+}
+.footer a:hover {
+    color: red;
+}
+
+@media screen and (min-width: 0px) { 
+    .content {
+        width: 94vw;
+        margin: 10px auto;
+        padding: 0 2vw;
+    }
+}
+@media screen and (min-width: 850px) { 
+    .content {
+        width: 800px;
+        margin: 60px auto 20px;
+        padding: 0 4vw;
+    }
+}
