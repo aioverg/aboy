@@ -9,27 +9,29 @@
 </head>
 
 <body>
-	<div class="content">
-		<!--标题-->
-		<header class="blog-title"><span>荆棘之旅</span></header>
-
-		<div id="app" v-cloak>
-			<!--顶部菜单栏-->
-			<nav class="nav">
-        <a href="./fe/index.html">前端</a>
-        <a href="./math/index.html">数学</a>
-        <a href="./music/index.html">音乐</a>
-      </nav>
-			<!--“首页” 菜单内容-->
-			<div>
-				<div class="date">
-					<span>{{nowDate}}</span>
-					<span class="day">{{day}}</span>
-				</div>
-				我是首页，什么都没有
+	<header class="header">
+		<div class="title">荆棘之旅</div>
+		<nav class="nav">
+			<a href="./fe/index.html">前端</a>
+			<a href="./math/index.html">数学</a>
+			<a href="./music/index.html">音乐</a>
+		</nav>
+	</header>
+	
+	<main class="main" id="app">
+		<div>
+			<div class="date">
+				<span>{{nowDate}}</span>
+				<span class="day">{{day}}</span>
 			</div>
+			我是首页，什么都没有
 		</div>
-	</div>
+			
+		
+		
+	</main>
+
+
 	<footer class="footer">
 		<span>备案号：</span>
 		<a href="http://www.beian.gov.cn">豫ICP备18032023号</a>
