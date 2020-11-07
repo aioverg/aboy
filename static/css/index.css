@@ -7,6 +7,16 @@
 * { /* 去除元素默认样式 */
   margin: 0;
   padding-left: 0;
+  word-break: break-all;
+}
+h1, h2 {
+  font-weight: normal;
+}
+h1 {
+  font-size: 18px;
+}
+h2 {
+  font-size: 16px;
 }
 body {
   background-color: #f7f7f7;
@@ -89,6 +99,12 @@ a { /* 链接样式 */
     font-size: 12px;
   }
 
+  h1 {
+    font-size: 17px;
+  }
+  h2 {
+    font-size: 15px;
+  }
 }
 @media screen and (min-width: 450px) { /* 屏宽大于450px样式 */
   body {
@@ -100,7 +116,12 @@ a { /* 链接样式 */
   .footer {
     font-size: 13px;
   }
-  
+  h1 {
+    font-size: 18px;
+  }
+  h2 {
+    font-size: 16px;
+  }
 }
 @media screen and (min-width: 850px) { /* 屏宽大于850px样式 */
   .header {
@@ -115,22 +136,6 @@ a { /* 链接样式 */
     padding-right: 4vw;
     padding-bottom: 20px;
   }
-}
-
-
-
-
-
-
-
-
-
-
-.date {
-    color:antiquewhite;
-}
-.day {
-    margin-left: 10px;
 }
 
 

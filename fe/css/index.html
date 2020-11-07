@@ -4,45 +4,50 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="./static/css/index.css">
-	<title>CSS</title>
+	<link rel="stylesheet" href="../../static/css/index.css">
+	<link rel="stylesheet" href="./special-index.css">
+	<title>HTML基础</title>
 </head>
 
 <body>
-	<div class="content">
-		<!--标题-->
-		<div class="blog-title">
-			<span>CSS</span>
+	<header class="header">
+		<div class="title">HTML基础</div>
+		<nav class="nav">
+			<a href="/index.html" class="nav-index">留给谁？</a>
+		</nav>
+	</header>
+	
+	<main class="main" id="app">
+		<div>
+			<div class="date">
+				<span>{{nowDate}}</span>
+				<span class="day">{{day}}</span>
+			</div>
+			我是首页，什么都没有
 		</div>
-		<div id="app" v-cloak>
-			<!--顶部菜单栏-->
-			<nav class="nav">
-        <a href="./fe/index.html">前端</a>
-        <a href="./math/index.html">数学</a>
-        <a href="./music/index.html">音乐</a>
-      </nav>
-			<!--“首页” 菜单内容-->
-			<div>
-				<div class="date">
-					<span>{{nowDate}}</span>
-					<span class="day">{{day}}</span>
-				</div>
-				我是首页，什么都没有
+
+		<div class="columns-two">
+			<div class="columns-item">
+				<h1>概念</h1>
+				<h2><a href="www.baidu.com">什么是HTML？</a></h2>
+			</div>
+			<div class="columns-item">
+				<h1>实例</h1>
+				<h2><a href="www.baidu.com">什么是CSS？</a></h2>
 			</div>
 		</div>
-	</div>
-	<div class="footer">
+			
+		
+		
+	</main>
+
+
+	<footer class="footer">
 		<span>备案号：</span>
 		<a href="http://www.beian.gov.cn">豫ICP备18032023号</a>
-	</div>
+	</footer>
 </body>
-<script src="./static/js/vue.min.js"></script>
-<!--前端-->
-<script src="./web/index.js"></script>
-<!--数学-->
-<script src="./math/index.js"></script>
-<!--音乐-->
-<script src="./music/index.js"></script>
+<script src="../static/js/vue.min.js"></script>
 
 <script>
 	new Vue({
