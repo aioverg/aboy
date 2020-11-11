@@ -24,7 +24,7 @@
 - QQ - 1010998682 - 密码一(英文混合数字)
 - QQ - 921075460 - 密码二(英文混合数字)
 - Outlook - aioverg@outlook.com - 密码二(英文大小写混合数字) - 安全手机（2614）
-- google - aioverg@outlook.com - 密码二
+- google - aioverg@outlook.com - 密码二(英文大小写@)
 - GitHub - 1010998682@qq.com - 密码一(英文大小写混合数字)
 - VPN（shadowsocks）-  1010998682@qq.com - 密码一
 - 小米 - 1010998682@qq.com - 密码二(英文混合数字)
