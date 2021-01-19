@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 20px;">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../static/css/index.css">
+	<link rel="stylesheet" href="../static/css/special-index.css">
+	<script src="../static/js/vue.min.js"></script>
+	<title>HTML基础</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="title">HTML基础</div>
+		<nav class="nav">
+			<a href="/index.html" class="nav-index">留给谁？</a>
+		</nav>
+	</header>
+	
+	<main class="main" id="app">
+		<div>
+			<div class="date">
+				<span>{{nowDate}}</span>
+				<span class="day">{{day}}</span>
+			</div>
+			我是首页，什么都没有
+		</div>
+
+		<div class="columns-two">
+			<div class="columns-item">
+				<h1>概念</h1>
+				<h2><a href="./01-html-intro.html">什么是HTML？</a></h2>
+			</div>
+			<div class="columns-item">
+				<h1>实例</h1>
+				<h2><a href="www.baidu.com">什么是CSS？</a></h2>
+			</div>
+		</div>
+			
+		
+		
+	</main>
+
+
+	<footer class="footer">
+		<span>备案号：</span>
+		<a href="http://www.beian.gov.cn">豫ICP备18032023号</a>
+	</footer>
+</body>
+
+<script>
+	new Vue({
+		el: "#app",
+		data: function () {
+			return {
+				nowDate: '',
+				day: ''
+			}
+		},
+		methods: {
+			getDate () {
+				let nowDate = new Date() // 当前时间
+				let endDate = new Date("dec 1 2025 00:00:00") // 结束时间2025-12-1
+				let endTime = endDate.getTime() // 结束时间毫秒数
+				let nowTime = nowDate.getTime() // 当前时间毫秒数
+				this.day = Math.floor(((endTime - nowTime)/(60*60*24*1000))) // 剩余天数
+				let date = nowDate.toLocaleDateString().replace(/\//g, '-') // 获取当前时间日期
+				let time = nowDate.toLocaleTimeString() // 获取当前时间时间
+				if (time.includes('上午')) {
+					let hour = 0
+					if (Number(time.slice(2,4)) == 12) {
+						hour = Number(time.slice(2,4)) - 12 + '0'
+					} else {
+						hour = '0' + Number(time.slice(2,3))
+					}
+					time = time.replace(/上午[0-9][0-9]/, hour)
+					this.nowDate = date + " " + time
+					return
+				}
+				if (time.includes('下午')) {
+					let hour = Number(time.split(':')[0].slice(2)) + 12 + ''
+					time = time.replace(/下午[0-9]{1,2}/, hour)
+					this.nowDate = date + " " + time
+					return
+				}
+
+			}
+		},
+		//页面加载时调用
+		created: function () {//新增菜单需要在这个地方加一个判断
+		    this.getDate()
+		    setInterval(() => {
+				this.getDate()
+			}, 1000)
+		}
+	})
+</script>
+</html>

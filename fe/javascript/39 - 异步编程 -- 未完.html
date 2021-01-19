@@ -1,0 +1,416 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>39 - 异步编程 -- 未完</title></head>
+<body><h4>异步编程</h4>
+<p><strong>进程与线层</strong></p>
+<ul>
+<li><p>进程：进程是一个具有独立功能的程序关于某个数据集合的一次运行活动，是系统进行资源分配和调度的基本单位。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。程序是指令、数据及其组织形式的描述，进程是程序的实体。可以在计算机的任务管理器中查看进程，如：</p>
+<p><img src="..\img\030.jpg" alt="1000" style="zoom:75%;" /></p>
+</li>
+<li><p>线程：是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。可以在计算机的任务管理器中查看线程数，如：</p>
+<p><img src="..\img\031.jpg" alt="1001" style="zoom:75%;" /></p>
+</li>
+<li><p>进程和线程：进程是线程的容器，一个进程中可以拥有多个线程，这些线程共用进程中的资源，如数据、内存等；一个程序运行时计算机会为其分配进程（一个程序可以有多个进程），进程中的线层进行逻辑运算以实现程序的效果。</p>
+</li>
+
+</ul>
+<p><strong>浏览器</strong></p>
+<ul>
+<li><p>浏览器进程：浏览器是多进程的，其主要进程有：</p>
+<ol start='' >
+<li><p>Browser进程：浏览器的主进程，只有一个，主要用来：</p>
+<ul>
+<li>负责浏览器页面显示，与用户交互（就浏览器本身的功能）。</li>
+<li>负责各个页面的管理，创建和销毁其它进程。</li>
+<li>将浏览器渲染进程得到的结果绘制到用户界面上。</li>
+<li>网络资源的管理、下载等。</li>
+
+</ul>
+</li>
+<li><p>第三方插件进程：每种类型的插件对应一个进程，仅在插件使用时才会创建。</p>
+</li>
+<li><p>GPU进程：最多一个，用于3D绘制等。</p>
+</li>
+<li><p>浏览器渲染进程：默认每个页面一个进程，这样可以保证各页面间互不影响，可以达到一个页面崩溃了不会影响其他页面等。</p>
+</li>
+
+</ol>
+</li>
+<li><p>浏览器渲染进程：也称浏览器内核，是多线程的，主要包含以下线程：</p>
+<ol start='' >
+<li><p>GUI渲染线程</p>
+<ul>
+<li>负责浏览器界面渲染，如解析HTML、CSS、构建DOM数和RenderObject树、布局、绘制等。</li>
+<li>当界面需要重绘或某种操作引发回流时，该线程就会执行。</li>
+<li>GUI渲染线程与JS引擎线程是互斥的，即当JS引擎执行时GUI渲染线程会被挂起，GUI更新会被保存在一个队列中等待JS引擎空闲时立即被执行。</li>
+
+</ul>
+</li>
+<li><p>JS引擎线程</p>
+<ul>
+<li>JS引擎线程也成JS内核，负责处理JavaScript脚本程序。</li>
+<li>一个页面（Renderer进程）中无论何时都只有一个JS线程处理JavaScript程序，这也是为什么JavaScript被称为单线程的原因。</li>
+<li>注意，由于JS引擎线程与GUI选软线程是互斥的，所以如果JS执行过长会造成页面渲染阻塞。</li>
+
+</ul>
+</li>
+<li><p>事件触发线程</p>
+<ul>
+<li><p>归属于浏览器而不是JS引擎，JS引擎的协助线程，当JS引擎执行代码块如setTimeout时（也可以说是浏览器渲染进程的其它线程，如鼠标点击事件、AJAX异步请求等），会将对应的任务添加到事件触发线程中，当对应的事件符合触发条件时，事件触发线程会将事件添加到处理队列的末尾，等待JS引擎处理。例如：</p>
+<pre><code class='language-javascript' lang='javascript'>function one(){console.log(1)}
+function two(){console.log(2)}
+function thr(){console.log(3)}
+function fou(){console.log(4)}
+one()                  //two会被读取放入事件触发线程中
+setTimeout(two, 30)    //当过30ms后会将two放入处理队列末尾，等待JS引擎来执行
+setTimeout(thr(), 40)  //注意thr()会立即执行
+fou()
+输出：1,3,4,2
+</code></pre>
+</li>
+
+</ul>
+</li>
+<li><p>定时器触发线程</p>
+<ul>
+<li>setInterval与setTimeout所在的线程，浏览器中的的定时计数器不是由JS引擎线程计数的（JS引擎线程是单线程的，如果用来计数会导致线程堵塞），当JS引擎线程执行setInterval与setTimeout所在的代码块时，定时器触发线程开始计时，等计时结束后将任务添加到处理队列末尾。</li>
+
+</ul>
+</li>
+<li><p>异步HTTP请求线程</p>
+<ul>
+<li>XMLHttpRequest连接成功后浏览器会新开的一个线程，当检测到状态变更时，如果设置有回调函数，异步HTTP请求线程会产生状态变更事件，将这个回调函数放入事件队列末尾。</li>
+
+</ul>
+</li>
+
+</ol>
+</li>
+<li><p>浏览器渲染页面的流程</p>
+<ol start='' >
+<li><p>Browser进程收到用户请求，获取加载页面需要的内容，然后将任务通过浏览器渲染进程接口传递给浏览器渲染进程。</p>
+</li>
+<li><p>浏览器渲染进程接收到消息后进行渲染，最后将结果传回Browser进程。浏览器渲染进程分为以下几步：</p>
+<ul>
+<li><p>解析HTML建立DOM树</p>
+</li>
+<li><p>解析CSS构建render树</p>
+</li>
+<li><p>将DOM树与render树结合</p>
+<p>注意：CSS加载不会阻塞DOM树解析，但会阻塞最终DOM树与render树的结合。</p>
+</li>
+
+</ul>
+</li>
+<li><p>Browser进程接收到浏览器渲染进程的结果，然后将结果发送给GPU进程</p>
+</li>
+<li><p>GPU进程将结果合成，显示在屏幕上。然后出发load事件。</p>
+</li>
+<li><p>然后处理页面的JS程序</p>
+</li>
+
+</ol>
+</li>
+
+</ul>
+<p><strong>JS的运行机制</strong></p>
+<ul>
+<li><p>JS执行任务时将任务分为同步任务和异步任务，任务进入执行栈时会判断任务是同步任务还是异步任务，若是同步任务则进入主线程直接执行，若是异步任务的话会进入事件触发线程，并注册相应的回调函数，当事件触发后将任务放入事件任务列队，当主线程的任务执行完毕后执行事件任务列队中的任务。JS引擎存在一种机制，会不断检查主线程是否为空，一旦主线程为空就会检查任务队列是否有待执行的任务。</p>
+</li>
+<li><p>流程图</p>
+<p><img src="..\img\032.jpg" alt="1002" style="zoom:55%;" /></p>
+</li>
+
+</ul>
+<p><strong>JS的异步与同步</strong></p>
+<ul>
+<li><p>同步模式：按照任务列队依次执行任务的模式。例如：</p>
+<pre><code class='language-javascript' lang='javascript'>function one(){console.log(1)}
+function two(){console.log(2)}
+function thr(){console.log(3)}
+one()
+two()
+thr()
+//函数会从上向下一次执行，输出1,2,3
+</code></pre>
+</li>
+<li><p>异步模式：不按照任务列队执行任务的模式。</p>
+<pre><code class='language-javascript' lang='javascript'>function f(){console.log(&quot;异步执行&quot;)}
+function one(){console.log(1)}
+function two(){
+    console.log(2)
+    setTimeout(f, 30)
+}
+function thr(){console.log(3)}
+one()
+two()
+thr()
+//执行流程:
+//执行one()
+//执行two()，执行two()内的console.log(2)，发现setTimeout()是任务任务，放入任务列队等待执行
+//执行thr()
+//此时主线程任务全部执行完毕，查看任务列队是否有任务待执行，发现任务，执行setTimeout()
+//所以输出：1,2,3，异步执行
+</code></pre>
+</li>
+<li><p>单线程：JavaScript的执行环境是单线程的，按理论来说JS不可能存在异步模式，事实上也是如此，但浏览器是多线程的，所以可以利用浏览器的多线程使JS看起来像是多线程。</p>
+</li>
+<li><p>异步实现</p>
+<ol start='' >
+<li>单线程：JavaScript的执行环境是单线程的。</li>
+<li>理论：JS是单线程的这个前提一直没有改变，但可以依靠浏览器的多线程实现异步，JS引擎执行任务时会判断任务是同步任务还是异步任务，若是同步任务则直接执行，异步任务则放入另一个列队，等同步任务全部执行完毕，再去执行异步任务，如setTimeout()就是异步任务，在执行同步任务时会被识别，等同步任务全部执行完毕后执行，所以若想生成异步则需要想办法让任务被识别为异步任务。</li>
+
+</ol>
+</li>
+<li><p>异步实现方法</p>
+<ol start='' >
+<li><p>回调函数</p>
+<ul>
+<li><p>回调函数：回调函数就是一个通过函数指针调用的函数。把函数的指针（地址）作为参数传递给另一个函数，当这个指针被用来调用其所指向的函数时，就称这个函数是回调函数。</p>
+<p>注意：从回调函数的定义可以看出，回调函数跟异步并没有必然关系（回调函数就是一个普通的函数）。只是执行异步操作的大多都是回调函数，这时回调函数才和异步产生了联系。例如：</p>
+<p>a、同步回调</p>
+<pre><code class='language-javascript' lang='javascript'>function f(){console.log(&quot;同步回调&quot;)}
+function one(){console.log(1)}
+function two(y){
+    console.log(2)
+    y()
+}
+function thr(){console.log(3)}
+one()
+two(f)  //此时two(f)中的f就是回调函数
+thr()
+//输出：1,2，同步回调，3
+</code></pre>
+<p>b、异步回调</p>
+<pre><code class='language-javascript' lang='javascript'>function f(){console.log(&quot;异步回调&quot;)}
+function one(){console.log(1)}
+function two(y){
+    console.log(2)
+    setTimeout(y, 30)
+}
+function thr(){console.log(3)}
+one()
+two(f)  //此时two(f)中的f就是回调函数
+thr()
+//输出：1,2,3，异步回调
+//这时f()作为回调函数被异步调用了
+</code></pre>
+<p>从上面两个例子看出，异步与回调并没有必然关系，回调函数只是将函数作为参数使用的一种方法，回调函数是否能异步与调用它的函数是否是异步有关。在同步回调例子中调用回调函数的函数是同步函数，所以回调函数同步执行；在异步回调的例子中调用回调函数的函数是异步函数，所以回调函数异步执行。</p>
+</li>
+<li><p>回调函数的优点：</p>
+<p>a、代码拆分，提高代码的复用性</p>
+<p>b、实现异步调用，因为有些操作需要异步执行，这时可以利用回调函数在某个事件触发的时候来调用函数</p>
+</li>
+<li><p>回调函数的缺点：</p>
+<p>a、丢失线性性(回调地狱)，多层回调函数会导致嵌套的层数过深，使代码纵向发展，不宜阅读和理解</p>
+<p>b、缺乏可信任性，控制反转导致的一系列信任问题。</p>
+<ul>
+<li><p>控制反转指调用回调函数的代码是第三方的代码，不在你的直接控制之下，如$.ajax()就是第三方的代码，当无法控制的第三方代码执行回调函数的时候，会存在一些问题，如：</p>
+<p>1、调用回调过早，2、调用回调过晚，3、调用的次数过多或过少，4、未能把所需要的参数传递给回调函数等，5、吞掉可能出现的错误或异常。</p>
+<p>这就会导致信任链断裂，如果没有采取措施解决这些控制反转导致的信任问题，代码中就会隐藏Bug。</p>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><p>事件监听</p>
+</li>
+<li><p>Promise</p>
+<ul>
+<li><p>Promise：Promise用于解决回调函数的用于异步处理时的控制反转问题，是一种规范，用于处理JavaScript异步，详情见：Promise/A+规范</p>
+</li>
+<li><p>Promise对象</p>
+<p>1、含义：Promise是ES6中按照Promise/A+规范引入的新对象，用于优化异步编程。</p>
+<p>2、语法：</p>
+<ul>
+<li><p>构造函数</p>
+<pre><code class='language-javascript' lang='javascript'>const promise = new Promise(
+    function(resolve, reject){
+        if(){
+           resolve(value)
+        }else{
+            reject(error)
+        }
+    }
+)
+</code></pre>
+<p>构造函数Promise接受一个函数作为参数，该函数有两个参数分别是resolve、reject，resolve和reject是由JavaScript提供的函数，不用自己部署。</p>
+<p>resolve函数将Promise对象的状态从“未完成pending ”变为“成功resolved”，在异步操作成功时调用，并将异步操作的结果作为参数返回；</p>
+<p>reject函数将Promise对象的状态从“未完成pending ”变为“失败rejected”，在异步操作失败时调用，并将异步操作报出的错误作为参数返回。</p>
+<p>Promise实例生成之后，可以用then方法分别指定resolved状态和rejected状态的回调函数。</p>
+</li>
+<li><p>属性</p>
+<p>Promise.length：length属性，其值总是为 1 (构造器参数的数目)</p>
+<p>Promise.prototype：<code>Promise</code> 构造器的原型</p>
+</li>
+<li><p>静态方法：</p>
+</li>
+
+</ul>
+<ol start='' >
+<li><p>Promise.all(iterable)：处理多个Promise对象，并返回一个新的Promise对象。</p>
+<p>新对象的成功状态：将所有Promise对象的返回值组成数组作为成功回调的返回值。</p>
+<p>新对象的失败状态：任何一个Promise对象的失败都会立即出发失败状态，并返回第一个失败的Promise对象的失败信息。例如：</p>
+<pre><code class='language-javascript' lang='javascript'>function promise(a, b){
+    return new Promise(
+        function(resolve, reject){
+            setTimeout(function(){resolve(a+b)}, 0)
+        }
+    )
+}
+var promiseAll = Promise.all([promise(1,2), promise(3,4)])
+promiseAll.then(function(res){console.log(res)})
+//输出[3, 7]
+</code></pre>
+</li>
+<li><p>Promise.race(iterable)：获取多个异步中最快的一个，例如：</p>
+<pre><code class='language-javascript' lang='javascript'>function asynFun(a,b,time){
+    return new Promise(function(resolve, reject){
+        setTimeout(function(){
+            resolve(a + b);
+        },time);
+    })
+}
+var promiseRace = Promise.race([asyncFun(1,2,200), asyncFun(2,3,100))
+promise.then(function(res){console.log(res)}) //输出 5
+</code></pre>
+</li>
+<li><p>Promise.reject(reason)：返回一个状态为失败的Promise对象，并将给定的失败信息传递给对应的处理方法，例如：</p>
+<pre><code class='language-javascript' lang='javascript'>var promiseReject = Promise.reject(&quot;失败&quot;)
+promiseReject.then(function(res){console.log(res)})
+</code></pre>
+</li>
+<li><p>Promise.resolve(value)：返回一个状态为成功的Promise对象，并将给定的成功信息传递给对应的处理方法，例如：</p>
+<pre><code class='language-javascript' lang='javascript'>var promiseReject = Promise.resolve(&quot;失败&quot;)
+promiseReject.then(function(res){console.log(res)})
+</code></pre>
+</li>
+
+</ol>
+<ul>
+<li><p>对象方法：</p>
+<ol start='' >
+<li><p>Promise.prototype.catch(onRejected)：是.then(null, rejection)或.then(undefined, rejection)的别名，用于指定发生错误时的回调函数。</p>
+</li>
+<li><p>Promise.prototype.then(onFulfilled, onRejected)：为当前Promise对象的解决(fulfillment)和拒绝(rejection)添加回调函数。例如：</p>
+<pre><code class='language-javascript' lang='javascript'>var promiseOne = function(one){
+    return new Promise(function(resolve, reject){
+        setTimeout(function(){resolve(one)}, 800)
+    })
+}
+var promiseTwo = function(res){
+    console.log(res)
+    return new Promise(function(resolve, reject){
+        setTimeout(function(){resolve(&quot;two&quot;)}, 200)
+    })
+}
+promiseOne(&quot;one&quot;).then(promiseTwo)
+    .then(function(res){console.log(res)})
+//输出one two
+</code></pre>
+</li>
+<li><p>Promise.prototype.finally(onFinally)：不管 Promise 对象最后状态如何，都会执行的操作。</p>
+</li>
+
+</ol>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><p>Generator</p>
+<ul>
+<li><p>Generator：生成器对象，使用 function* expression 生成一个生成器函数。生成器函数能在执行时暂停，然后又能从暂停处继续执行。</p>
+</li>
+<li><p>语法：</p>
+<ol start='' >
+<li><p>生成器函数</p>
+<pre><code class='language-javascript' lang='javascript'>function* name(param){ statements }
+</code></pre>
+<p>注意：生气函数不能作为构造函数使用。</p>
+</li>
+<li><p>yield：每次next()会执行一个yield表达式。</p>
+<p>yield*：将执行权移交给另一个生成器函数（当前生成器暂停执行）。</p>
+<pre><code class='language-javascript' lang='javascript'>function* f(){
+    yield &quot;f-1&quot;
+    yield &quot;f-2&quot;
+}
+function* g(){
+    yield &quot;g-1&quot;
+    yield* f()
+    yield &quot;g-2&quot;
+}
+var gg = g()
+console.log(gg.next())  //{value: &quot;g-1&quot;, done: false}
+console.log(gg.next())  //{value: &quot;f-1&quot;, done: false}
+console.log(gg.next())  //{value: &quot;f-2&quot;, done: false}
+console.log(gg.next())  //{value: &quot;g-2&quot;, done: false}
+console.log(gg.next())  //{value: undefined, done: true}
+</code></pre>
+</li>
+<li><p>next( )：返回一个包含value和done的对象，value是本次yield表达式的返回值，done为布尔属性，表示生成器后续是否还有yield。</p>
+<p>next(param)：将值赋给上一个yield左边的变量。</p>
+<pre><code class='language-javascript' lang='javascript'>function* f(i){
+    yield i
+    x = yield i+1
+    yield x+1
+    return yield i+2
+    yield i+3
+}
+var ff = f(1)
+console.log(ff.next())   //{value: 1, done: false}
+console.log(ff.next())   //{value: 2, done: false}
+console.log(ff.next(10)) //{value: 11, done: false}
+console.log(ff.next())   //{value: 3, done: false}
+console.log(ff.next())   //{value: undefined, done: true}
+</code></pre>
+</li>
+<li><p>return：结束代码。</p>
+<pre><code class='language-javascript' lang='javascript'>function* f(){
+    yield 1
+    return 2
+    yield 3
+}
+var ff = f()
+console.log(ff.next())  //{value: 1, done: false}
+console.log(ff.next())  //{value: 2, done: true}
+console.log(ff.next())  //{value: undefined, done: true}
+</code></pre>
+</li>
+<li><p>for ··· of：可以自动遍历Generator对象，不需要调用next方法。例如：</p>
+<pre><code class='language-javascript' lang='javascript'>function* f(){
+    yield 1
+    yield 2
+    return 3
+}
+for (let i of f()){console.log(i)}
+//输出：1 2，注意return不会被包含在内
+</code></pre>
+</li>
+<li><p>&nbsp;</p>
+</li>
+
+</ol>
+</li>
+
+</ul>
+</li>
+<li><p>Async/Await</p>
+<ul>
+<li>Async：Gererator函数的语法糖。Async函数就是将Gererator函数的星号(*)标志换成async，将yield换成await。</li>
+
+</ul>
+</li>
+
+</ol>
+</li>
+
+</ul>
+</body>
+</html>
