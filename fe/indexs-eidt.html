@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML/CSS/JS 在线工具</title>
+  <meta name="keywords" content="HTML/CSS/JS 在线工具">
+  <meta name="description" content="通过 HTML/CSS/JS 在线工具，你可以在线输入 HTML 、CSS、JS 代码，该工具能实时显示运行效果。..">
+
+  <script src="https://cdn.staticfile.org/codemirror/5.48.2/codemirror.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.48.2/codemirror.min.css">
+
+  <!-- CSS 上色 -->
+  <script src="https://cdn.staticfile.org/codemirror/5.48.2/mode/css/css.js"></script>
+
+  <!-- javascript 上色 -->
+  <script src="https://cdn.staticfile.org/codemirror/5.48.2/mode/javascript/javascript.js"></script>
+
+  <!-- html 上色 -->
+  <script src="https://cdn.staticfile.org/codemirror/5.48.2/mode/xml/xml.js"></script>
+
+  <!-- 使css在不同的浏览器中保持一致的表现 -->
+  <link href="https://cdn.staticfile.org/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+
+  <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row" style="padding-top:12px;" id="runoob-content">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <form class="form-inline" role="form">
+              <label style="margin-right:12px;"><strong style="font-size: 16px">HTML/CSS/JS 在线工具</strong></label>
+
+              <button type="button" class="btn btn-warning" id="basehtml">HTML 模板</button>
+              <div class="form-group">
+                <button type="button" class="btn btn-success" id="runcode">运行</button>
+                <label>
+                  <input type="checkbox" id="isautorun">自动执行
+                </label>
+              </div>
+            </form>
+
+          </div>
+          <div class="panel-body" style="padding:0;">
+            <form role="form" id="compiler-form">
+              <div id="splitContainer">
+                <div>
+                  <div id="leftSplitter">
+                    <div>
+                      <textarea placeholder="输入 HTML 代码……" id="html-input" class="form-control" name="code" rows="11"></textarea>
+                      <a href="javascript:void(0);" class="windowLabel" data-panel="js">
+                        <span class="label">
+                          HTML
+                        </span>
+                        <i class="fa fa-cog">
+                        </i>
+                      </a>
+                    </div>
+                    <div>
+                      <textarea placeholder="输入 JavaScript 代码……" id="js-input" class="form-control" name="code" rows="10"></textarea>
+                      <a href="javascript:void(0);" class="windowLabel" data-panel="js">
+                        <span class="label">
+                          JavaScript
+                        </span>
+                        <i class="fa fa-cog">
+                        </i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div id="rightSplitter">
+                    <div>
+                      <textarea placeholder="输入 CSS 代码……" id="css-input" class="form-control" rows="11"></textarea>
+                      <a href="javascript:void(0);" class="windowLabel" data-panel="js">
+                        <span class="label">
+                          CSS
+                        </span>
+                        <i class="fa fa-cog">
+                        </i>
+                      </a>
+                    </div>
+                    <div id="output">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var winHeight = 0;
+      if (window.innerHeight) {
+        winHeight = window.innerHeight;
+      } else if ((document.body) && (document.body.clientHeight)) {
+        winHeight = document.body.clientHeight;
+      }
+      //通过深入Document内部对body进行检测，获取浏览器窗口高度
+      if (document.documentElement && document.documentElement.clientHeight) {
+        winHeight = document.documentElement.clientHeight;
+      }
+      $("#runcode").click(function () { // 自动运行
+        submitTryit();
+      });
+      $("#isautorun").prop("checked", true); // 勾选自动运行选框
+    });
+    // CM OPTIONS
+    var cm_opt = {
+      mode: 'text/html',
+      gutter: true,
+      lineNumbers: true,
+      autoCloseBrackets: true,
+      lineWrapping: true,
+      matchBrackets: true,
+      autoCloseTags: true
+    };
+    // HTML EDITOR
+    var html_box = document.querySelector('#html-input');
+    var html_editor = CodeMirror.fromTextArea(html_box, cm_opt);
+    //var isautorun = $('#isautorun').prop('checked');
+    html_editor.on('change', function (inst, changes) {
+      if ($('#isautorun').prop('checked')) {
+        submitTryit();
+      }
+
+    });
+    // CSS EDITOR
+    cm_opt.mode = 'css';
+    var css_box = document.querySelector('#css-input');
+    var css_editor = CodeMirror.fromTextArea(css_box, cm_opt);
+
+
+    css_editor.on('change', function (inst, changes) {
+      if ($('#isautorun').prop('checked')) {
+        submitTryit();
+      }
+    });
+
+    // JAVASCRIPT EDITOR
+    cm_opt.mode = 'javascript';
+    var js_box = document.querySelector('#js-input');
+    var js_editor = CodeMirror.fromTextArea(js_box, cm_opt);
+
+
+    js_editor.on('change', function (inst, changes) {
+      if ($('#isautorun').prop('checked')) {
+        submitTryit();
+      }
+    });
+
+    $("#basehtml").click(function () {
+      _html_code = "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>文档标题</title>\n</head>\n<body>\n\t<h1>我的第一个HTML页面</h1>\n\t<p>我的第一个段落。</p>\n</body>\n</html>\n";
+      html_editor.getDoc().setValue(_html_code);
+    });
+
+
+    html_editor.setSize('100%', '100%');
+    js_editor.setSize('100%', '100%');
+    css_editor.setSize('100%', '100%');
+
+
+
+
+    function submitTryit() {
+      // 基础模板
+
+      var html = html_editor.getValue(),
+        css = css_editor.getValue(),
+        js = js_editor.getValue(),
+        src = html;
+      if (html) {
+        var patternHtmlTag = /<html([^>]*)>/im;
+        var array_matches_html_tag = patternHtmlTag.exec(src);
+        if (array_matches_html_tag) {
+          src = src.replace('<html>', '<html ' + array_matches_html_tag[1] + '>');
+        }
+        var patternHead = /<head[^>]*>((.|[\n\r])*)<\/head>/im
+        var array_matches_head = patternHead.exec(src);
+
+        var patternBodyTag = /<body([^>]*)>/im;
+        var array_matches_body_tag = patternBodyTag.exec(src);
+        if (array_matches_body_tag) {
+          src = src.replace('<body>', '<body ' + array_matches_body_tag[1] + '>');
+        }
+
+      }
+
+      // CSS
+      if (css) {
+        css = '<style>' + css + '</style>';
+        if (array_matches_head) {
+          src = src.replace('</head>', css + '</head>');
+        } else if (array_matches_body_tag) {
+          src = src.replace('</body>', css + '</body>');
+        } else {
+          src += css;
+        }
+      }
+
+      // Javascript
+      if (js) {
+        js = '<script>' + js + '<\/script>';
+        if (array_matches_body_tag) {
+          src = src.replace('</body>', js + '</body>');
+        } else {
+          src += js;
+        }
+      }
+
+      text = src;
+      var ifr = document.createElement("iframe");
+      ifr.setAttribute("frameborder", "0");
+      ifr.setAttribute("id", "iframeResult");
+      document.getElementById("output").innerHTML = "";
+      document.getElementById("output").appendChild(ifr);
+
+      var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+      ifrw.document.open();
+      ifrw.document.write(text);
+      ifrw.document.close();
+      autodivheight();
+    }
+    submitTryit();
+    window.addEventListener("resize", autodivheight);
+    function autodivheight() {
+      var winHeight = 0;
+      if (window.innerHeight) {
+        winHeight = window.innerHeight;
+      } else if ((document.body) && (document.body.clientHeight)) {
+        winHeight = document.body.clientHeight;
+      }
+      //通过深入Document内部对body进行检测，获取浏览器窗口高度
+      if (document.documentElement && document.documentElement.clientHeight) {
+        winHeight = document.documentElement.clientHeight;
+      }
+    }
+  </script>
+  </div>
+  </div>
+</body>
+
+</html>
