@@ -10,5 +10,4 @@ window.onload = function(){
   footer.appendChild(beianTitle)
   footer.appendChild(beianLink)
   footer.appendChild(author)
-  console.log('00000000000000', footer)
 }
