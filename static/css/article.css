@@ -193,7 +193,7 @@ body {
     #main {
       width: 720px;
       margin: 0 auto 20px;
-      padding: 0 50px;
+      padding: 10px 50px;
       padding-bottom: 20px;
     }
     #app {
