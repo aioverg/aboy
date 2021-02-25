@@ -47,7 +47,6 @@ body {
   justify-content: flex-end;
   flex-wrap: wrap;
   width: 100%;
-  padding-bottom: 5px;
 }
 #header .nav-index { /* 导航主页样式 */
   color: #a19f9f;
@@ -175,8 +174,7 @@ body {
     #main {
       width: 94vw;
       margin: 0 auto 20px;
-      padding: 0 2vw;
-      padding-bottom: 10px;
+      padding: 15px 2vw 20px 2vw;
     }
     #app {
       margin-top: 30px;
@@ -193,8 +191,7 @@ body {
     #main {
       width: 720px;
       margin: 0 auto 20px;
-      padding: 10px 50px;
-      padding-bottom: 20px;
+      padding: 15px 50px 20px 50px;
     }
     #app {
       position: fixed;
