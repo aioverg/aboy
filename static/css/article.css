@@ -92,6 +92,7 @@ body {
 
 #article p { /* 段落 */
     margin: 10px 0;
+    line-height: 24px;
 }
 
 
