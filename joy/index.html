@@ -6,30 +6,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href=".././static/css/index.css">
 	<script src=".././static/js/vue.min.js"></script>
+	<script src="./data.js"></script>
 	<title>前端之旅</title>
 </head>
 
 <body>
-	<header class="header">
-		<div class="title">荆棘之旅</div>
-		<nav class="nav">
-			<a href=".././index.html" class="nav-index">主站</a>
-			<a href="./security/index.html">证券</a>
-		</nav>
-	</header>
+	<div id="app">
+		<header class="header">
+			<div class="title">荆棘之旅</div>
+			<nav class="nav">
+				<a href=".././index.html" class="nav-index">主站</a>
+				<span href="" v-on:click="switchMenu('record')">证券</span>
+				<span href="" v-on:click="switchMenu('security')">记录</span>
+			</nav>
+		</header>
 
-	<main class="main" id="app">
-		<div>
-			<div class="date">
-				<span>{{nowDate}}</span>
-				<span class="day">{{day}}</span>
+		<main class="main">
+			<div>
+				<div class="date">
+					<span>{{nowDate}}</span>
+					<span class="day">{{day}}</span>
+				</div>
+				<a v-for="item in currentMenuData" :key="item.path" :href="item.path">{{item.name}}</a>
 			</div>
-			我是首页，什么都没有
-		</div>
-
-
-
-	</main>
+		</main>
+	</div>
 
 
 	<footer class="footer">
@@ -45,7 +46,10 @@
 		data: function () {
 			return {
 				nowDate: '',
-				day: ''
+				day: '',
+				homeData: [], // 首页菜单数据列表
+				currentMenuData: [], // 其它菜单文章列表
+
 			}
 		},
 		methods: {
@@ -74,7 +78,18 @@
 					this.nowDate = date + " " + time
 					return
 				}
-
+			},
+			switchMenu(menu) {
+				switch(menu){
+					case 'record':
+					  this.currentMenuData = record
+					  break
+					case 'security':
+						this.currentMenuData = security
+						break
+					default:
+						console.log('未找到菜单')
+				}
 			}
 		},
 		//页面加载时调用
@@ -84,7 +99,8 @@
 				this.getDate()
 			}, 1000)
 			const params = window.location.href.split('=')[1]
-			console.log(params)
+			this.currentMenuData = record
+			console.log(params, this.currentMenuData)
 		}
 	})
 </script>

@@ -1,7 +1,18 @@
 /* 网站基本布局样式 */
 
 [v-cloak] {
-    display: none;
+  display: none;
+}
+
+body {
+  background-color: #f7f7f7;
+  /* 禁止复制 */
+  font-size: 16px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 }
 
 * { /* 去除元素默认样式 */
@@ -47,8 +58,20 @@ body {
   width: 100%;
   padding-bottom: 5px;
 }
-.nav-index {
+.nav-index { /* 导航标签回到主页样式 */
   color: #a19f9f;
+}
+
+.nav a { /* 导航标签样式 - 链接 */
+  padding: 3px 10px;
+  font-weight: 500;
+}
+
+.nav span { /* 导航标签样式 - 非链接 */
+  padding: 3px 10px;
+  font-weight: 500;
+  color: #424242;
+  cursor: pointer;
 }
 
 .footer { /* 页面底部 */
@@ -64,10 +87,6 @@ a { /* 链接样式 */
   text-decoration: none;
 }
 
-.nav a { /* 导航标签样式 */
-  padding: 3px 10px;
-  font-weight: 500;
-}
 
 .footer a { /* 底部链接样式 */
   color: #a19f9f;
