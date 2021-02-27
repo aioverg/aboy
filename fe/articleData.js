@@ -1,20 +1,20 @@
 //标签数据与目录数据中的标签值要相等。
 
-const feTags = [ //标签
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "HTTP",
-    "Git",
-    "Node",
-    "React",
-    "Vue",
-    "Web"
+const menuData = [
+    { key: 'home', value: '首页'},
+    { key: 'HTML', value: 'HTML' },
+    { key: 'CSS', value: 'CSS' },
+    { key: 'JavaScript', value: 'JavaScript' },
+    { key: 'HTTP', value: 'HTTP' },
+    { key: 'Git', value: 'Git' },
+    { key: 'Node', value: 'Node' },
+    { key: 'React', value: 'React' },
+    { key: 'Vue', value: 'Vue' },
+    { key: 'Web', value: 'Web' },
+
 ]
 
-
-
-const feCatalog = { //目录
+const articleData = { //目录
     "HTML": [
 	    {
             name: "注意",
