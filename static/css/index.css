@@ -71,12 +71,18 @@ h2 {
   font-size: 16px;
   color: #a19f9f;
 }
+.menucontent .pagebox input[type=number] {
+  -moz-appearance: textfield;
+}
+.menucontent .pagebox input[type=number]::-webkit-inner-spin-button,
+.menucontent .pagebox input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 .menucontent .pagebox .prePage {
-
   margin-right: 10px;
 }
 .menucontent .pagebox .nextPage {
-
   margin-left: 10px;
 }
 

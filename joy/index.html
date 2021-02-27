@@ -7,32 +7,35 @@
 	<link rel="stylesheet" href=".././static/css/index.css">
 	<script src=".././static/js/vue.min.js"></script>
 	<script src=".././static/js/menuMixin.js"></script>
+	<script src=".././static/js/homeMixin.js"></script>
 	<script src="./data.js"></script>
 	<title>前端之旅</title>
 </head>
 
 <body style="display: flex; flex-direction: column;">
-	<div id="app">
+	<div id="app" v-cloak>
 		<header class="header">
 			<div class="title">荆棘之旅</div>
 			<nav class="nav">
 				<a href=".././index.html" class="nav-index">主站</a>
-				<span href="" v-on:click="switchMenu('security')"
+				<span v-on:click="switchMenu('home')"
 					:style="{'color': (currentMenu == 'home' ? 'blue': '#424242')}">首页</span>
-				<span href="" v-on:click="switchMenu('security')"
+				<span v-on:click="switchMenu('security')"
 					:style="{'color': (currentMenu == 'security' ? 'blue': '#424242')}">证券</span>
-				<span href="" v-on:click="switchMenu('record')"
+				<span v-on:click="switchMenu('record')"
 					:style="{'color': (currentMenu == 'record' ? 'blue': '#424242')}">记录</span>
 			</nav>
 		</header>
 
 		<main class="main">
-
-			<div class="menucontent">
+			<div class="homecontent" v-if="currentMenu == 'home'">
+				首页内容
 				<div class="date">
 					<span>{{nowDate}}</span>
 					<span class="day">{{day}}</span>
 				</div>
+			</div>
+			<div class="menucontent" v-if="currentMenu != 'home'">
 				<div class="artclelist">
 					<div v-for="item in currentMenuData" :key="item.path">
 						<a :href="item.path">{{item.name}}</a>
@@ -42,7 +45,7 @@
 					<span v-on:click="prePage" class="prePage"
 						:style="{'cursor':(currentPage<=1 ? 'not-allowed' : 'pointer' )}">上一页</span>
 					<span>第</span>
-					<input v-model="currentPage" />
+					<input v-model="currentPage" v-on:blur="changePage" v-on:keyup.13="changePage" type="number" />
 					<span>页，共</span>
 					<span>{{total}}</span>
 					<span>页</span>
@@ -51,9 +54,6 @@
 				</div>
 			</div>
 		</main>
-
-
-
 		<footer class="footer">
 			<span>ICP证:</span>
 			<a href="https://beian.miit.gov.cn">豫ICP备18032023号-1</a>
@@ -65,92 +65,7 @@
 <script>
 	new Vue({
 		el: "#app",
-		mixins: [menuMixin],
-		data: function () {
-			return {
-				nowDate: '',
-				day: '',
-				homeData: [], // 首页菜单数据列表
-				currentMenu: 'home', // 首页
-				currentMenuData: [], // 其它菜单文章列表
-				currentPage: 1, // 当前页
-				total: 5, // 页数总计
-				pageSize: 20, // 每页条数
-			}
-		},
-		methods: {
-			getDate() {
-				let nowDate = new Date() // 当前时间
-				let endDate = new Date("dec 1 2025 00:00:00") // 结束时间2025-12-1
-				let endTime = endDate.getTime() // 结束时间毫秒数
-				let nowTime = nowDate.getTime() // 当前时间毫秒数
-				this.day = Math.floor(((endTime - nowTime) / (60 * 60 * 24 * 1000))) // 剩余天数
-				let date = nowDate.toLocaleDateString().replace(/\//g, '-') // 获取当前时间日期
-				let time = nowDate.toLocaleTimeString() // 获取当前时间时间
-				if (time.includes('上午')) {
-					let hour = 0
-					if (Number(time.slice(2, 4)) == 12) {
-						hour = Number(time.slice(2, 4)) - 12 + '0'
-					} else {
-						hour = '0' + Number(time.slice(2, 3))
-					}
-					time = time.replace(/上午[0-9][0-9]/, hour)
-					this.nowDate = date + " " + time
-					return
-				}
-				if (time.includes('下午')) {
-					let hour = Number(time.split(':')[0].slice(2)) + 12 + ''
-					time = time.replace(/下午[0-9]{1,2}/, hour)
-					this.nowDate = date + " " + time
-					return
-				}
-			},
-			switchMenu(menu) {
-				sessionStorage.setItem('menu', menu)
-				this.currentPage = 1
-				if (menu != this.currentMenu) {
-					const menuData = articleData[menu]
-					const total = Math.ceil(menuData.length / 3)
-					this.total = total
-					this.currentMenu = menu
-					if (total <= 1) {
-						this.currentMenuData = menuData
-					} else {
-						this.currentMenuData = record.slice(0, 3)
-					}
-				}
-			},
-			prePage() {
-				if (this.currentPage > 1) {
-					this.currentPage = this.currentPage - 1
-				}
-			},
-			nextPage() {
-				if (this.currentPage < this.total) {
-					this.currentPage = this.currentPage + 1
-				}
-			}
-		},
-		//页面加载时调用
-		created: function () {//新增菜单需要在这个地方加一个判断
-			this.getDate()
-			setInterval(() => {
-				this.getDate()
-			}, 1000)
-			const menu = sessionStorage.getItem('menu')
-			if (menu) {
-				const menuData = articleData[menu]
-				const total = Math.ceil(menuData.length / 3)
-				this.total = total
-				this.currentMenu = menu
-				if (total <= 1) {
-					this.currentMenuData = menuData
-				} else {
-					this.currentMenuData = record.slice(0, 3)
-				}
-			}
-
-		}
+		mixins: [menuMixin, homeMixin],
 	})
 </script>
 
