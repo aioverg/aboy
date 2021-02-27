@@ -21,7 +21,7 @@
 
    ```html
    <header id="header">
-       <div class="title">文章的文字</div>
+       <div class="title">文章的标题</div>
        <nav class="nav">
            <a href="/index.html" class="nav-index">首页，导航</a>
            <a href="./html/index.html">其他导航</a>
