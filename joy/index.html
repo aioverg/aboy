@@ -1,55 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" style="font-size: 20px;">
+<html lang="en" style="height: 100%;">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href=".././static/css/index.css">
 	<script src=".././static/js/vue.min.js"></script>
+	<script src=".././static/js/menuMixin.js"></script>
 	<script src="./data.js"></script>
 	<title>前端之旅</title>
 </head>
 
-<body>
+<body style="display: flex; flex-direction: column;">
 	<div id="app">
 		<header class="header">
 			<div class="title">荆棘之旅</div>
 			<nav class="nav">
 				<a href=".././index.html" class="nav-index">主站</a>
-				<span href="" v-on:click="switchMenu('security')">证券</span>
-				<span href="" v-on:click="switchMenu('record')">记录</span>
+				<span href="" v-on:click="switchMenu('security')"
+					:style="{'color': (currentMenu == 'home' ? 'blue': '#424242')}">首页</span>
+				<span href="" v-on:click="switchMenu('security')"
+					:style="{'color': (currentMenu == 'security' ? 'blue': '#424242')}">证券</span>
+				<span href="" v-on:click="switchMenu('record')"
+					:style="{'color': (currentMenu == 'record' ? 'blue': '#424242')}">记录</span>
 			</nav>
 		</header>
 
 		<main class="main">
-			<div>
+
+			<div class="menucontent">
 				<div class="date">
 					<span>{{nowDate}}</span>
 					<span class="day">{{day}}</span>
 				</div>
-				<a v-for="item in currentMenuData" :key="item.path" :href="item.path">{{item.name}}</a>
+				<div class="artclelist">
+					<div v-for="item in currentMenuData" :key="item.path">
+						<a :href="item.path">{{item.name}}</a>
+					</div>
+				</div>
+				<div class="pagebox">
+					<span v-on:click="prePage" class="prePage"
+						:style="{'cursor':(currentPage<=1 ? 'not-allowed' : 'pointer' )}">上一页</span>
+					<span>第</span>
+					<input v-model="currentPage" />
+					<span>页，共</span>
+					<span>{{total}}</span>
+					<span>页</span>
+					<span v-on:click="nextPage" class="nextPage"
+						:style="{'cursor':(currentPage>=total ? 'not-allowed' : 'pointer' )}">下一页</span>
+				</div>
 			</div>
 		</main>
+
+
+
+		<footer class="footer">
+			<span>ICP证:</span>
+			<a href="https://beian.miit.gov.cn">豫ICP备18032023号-1</a>
+		</footer>
 	</div>
-
-
-	<footer class="footer">
-		<span>ICP证:</span>
-		<a href="https://beian.miit.gov.cn">豫ICP备18032023号-1</a>
-	</footer>
 </body>
 
 
 <script>
 	new Vue({
 		el: "#app",
+		mixins: [menuMixin],
 		data: function () {
 			return {
 				nowDate: '',
 				day: '',
 				homeData: [], // 首页菜单数据列表
+				currentMenu: 'home', // 首页
 				currentMenuData: [], // 其它菜单文章列表
-
+				currentPage: 1, // 当前页
+				total: 5, // 页数总计
+				pageSize: 20, // 每页条数
 			}
 		},
 		methods: {
@@ -80,15 +106,28 @@
 				}
 			},
 			switchMenu(menu) {
-				switch(menu){
-					case 'record':
-					  this.currentMenuData = record
-					  break
-					case 'security':
-						this.currentMenuData = security
-						break
-					default:
-						console.log('未找到菜单')
+				sessionStorage.setItem('menu', menu)
+				this.currentPage = 1
+				if (menu != this.currentMenu) {
+					const menuData = articleData[menu]
+					const total = Math.ceil(menuData.length / 3)
+					this.total = total
+					this.currentMenu = menu
+					if (total <= 1) {
+						this.currentMenuData = menuData
+					} else {
+						this.currentMenuData = record.slice(0, 3)
+					}
+				}
+			},
+			prePage() {
+				if (this.currentPage > 1) {
+					this.currentPage = this.currentPage - 1
+				}
+			},
+			nextPage() {
+				if (this.currentPage < this.total) {
+					this.currentPage = this.currentPage + 1
 				}
 			}
 		},
@@ -98,9 +137,19 @@
 			setInterval(() => {
 				this.getDate()
 			}, 1000)
-			const params = window.location.href.split('=')[1]
-			this.currentMenuData = record
-			console.log(params, this.currentMenuData)
+			const menu = sessionStorage.getItem('menu')
+			if (menu) {
+				const menuData = articleData[menu]
+				const total = Math.ceil(menuData.length / 3)
+				this.total = total
+				this.currentMenu = menu
+				if (total <= 1) {
+					this.currentMenuData = menuData
+				} else {
+					this.currentMenuData = record.slice(0, 3)
+				}
+			}
+
 		}
 	})
 </script>
