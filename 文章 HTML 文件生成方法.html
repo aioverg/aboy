@@ -1,32 +1,37 @@
 <!doctype html>
 <html>
-	<head>
-		<title>文章 HTML 文件生成方法</title>
-		<meta name="description" content="文章 HTML 文件生成方法|说明">
-		<meta charset='UTF-8'>
-		<meta name='viewport' content='width=device-width initial-scale=1'>
-		<meta http-equiv="Content-Language" content="zh-cn">
-		<meta name="author" content="aioverg">
-		<link rel="stylesheet" type="text/css" href="./static/css/article.css" />
-		<script src="./static/js/footer.js"></script>
-	</head>
+
+<head>
+	<title>文章标题</title>
+	<meta name="description" content="文章描述|文章描述">
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=device-width initial-scale=1'>
+	<meta http-equiv="Content-Language" content="zh-cn">
+	<meta name="author" content="aioverg">
+	<link rel="stylesheet" type="text/css" href="./static/css/article.css" />
+	<script src="./static/js/footer.js"></script>
+</head>
+
 <body>
 	<header id="header">
-    <div class="title">文章的文字</div>
-    <nav class="nav">
-        <a href="/index.html" class="nav-index">首页，导航</a>
-        <a href="./html/index.html">其他导航</a>
-    </nav>
-</header>
-<main id="main">
-	<article id="article">
-	<ol>
-<li><p>使用 <code>Typora软件</code> 打开 <code>.md</code> 文档，将文档导出为 <code>HTML（widthout styles）</code> 的 <code>.html</code> 文档。</p>
-</li>
-<li><p>打开 <code>.html</code> 文档，将文档的 <code>&lt;head&gt;&lt;/head&gt;</code> 替换为如下：</p>
-<pre><code class='language-html' lang='html'>&lt;head&gt;
-	&lt;title&gt;文章 HTML 文件生成方法&lt;/title&gt;
-	&lt;meta name=&quot;description&quot; content=&quot;文章 HTML 文件生成方法|说明&quot;&gt;
+		<div class="title">文章的标题</div>
+		<nav class="nav">
+			<a href="/index.html" class="nav-index">返回</a>
+		</nav>
+	</header>
+
+	<main id="main">
+		<article id="article">
+			<ol start=''>
+				<li>
+					<p>使用 <code>Typora软件</code> 打开 <code>.md</code> 文档，将文档导出为 <code>HTML（widthout styles）</code> 的
+						<code>.html</code> 文档。</p>
+				</li>
+				<li>
+					<p>打开 <code>.html</code> 文档，将文档的 <code>&lt;head&gt;&lt;/head&gt;</code> 替换为如下：</p>
+					<pre><code class='language-html' lang='html'>&lt;head&gt;
+	&lt;title&gt;文章标题&lt;/title&gt;
+	&lt;meta name=&quot;description&quot; content=&quot;文章描述|文章描述&quot;&gt;
 	&lt;meta charset=&#39;UTF-8&#39;&gt;
 	&lt;meta name=&#39;viewport&#39; content=&#39;width=device-width initial-scale=1&#39;&gt;
 	&lt;meta http-equiv=&quot;Content-Language&quot; content=&quot;zh-cn&quot;&gt;
@@ -35,41 +40,51 @@
 	&lt;script src=&quot;../../static/js/footer.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 </code></pre>
-<p>新的 <code>&lt;head&gt;&lt;/head&gt;</code> 包含了 <code>SEO</code> 优化，和需要的 <code>css</code> 、<code>javascript</code> 文件，注意 <code>css</code> 、<code>javascript</code> 文件的都放在根目录的 <code>/static</code> 文件夹中，要根据文件所在的路径，进行修改。</p>
-</li>
-<li><p>在文档中添加 <code>&lt;header&gt;&lt;/header&gt;</code> 元素，作为文档的头部内容，元素内容如下：</p>
-<pre><code class='language-html' lang='html'>&lt;header id=&quot;header&quot;&gt;
-    &lt;div class=&quot;title&quot;&gt;文章的文字&lt;/div&gt;
+					<p>新的 <code>&lt;head&gt;&lt;/head&gt;</code> 包含了 <code>SEO</code> 优化，和需要的 <code>css</code>
+						、<code>javascript</code> 文件，注意 <code>css</code> 、<code>javascript</code> 文件的都放在根目录的 <code>/static</code>
+						文件夹中，要根据文件所在的路径，进行修改。</p>
+				</li>
+				<li>
+					<p>在文档中添加 <code>&lt;header&gt;&lt;/header&gt;</code> 元素，作为文档的头部内容，元素内容如下：</p>
+					<pre><code class='language-html' lang='html'>&lt;header id=&quot;header&quot;&gt;
+    &lt;div class=&quot;title&quot;&gt;文章的标题&lt;/div&gt;
     &lt;nav class=&quot;nav&quot;&gt;
-        &lt;a href=&quot;/index.html&quot; class=&quot;nav-index&quot;&gt;首页，导航&lt;/a&gt;
-        &lt;a href=&quot;./html/index.html&quot;&gt;其他导航&lt;/a&gt;
+        &lt;a href=&quot;/index.html&quot; class=&quot;nav-index&quot;&gt;返回&lt;/a&gt;
     &lt;/nav&gt;
 &lt;/header&gt;
 </code></pre>
-</li>
-<li><p>在文档中添加 <code>&lt;main&gt;&lt;/main&gt;</code> 元素，在 <code>&lt;main&gt;&lt;/main&gt;</code> 元素中添加 <code>&lt;article&gt;&lt;/article&gt;</code> 元素，将 <code>.html</code> 文档的 <code>&lt;body&gt;&lt;/body&gt;</code> 中的内容剪切到 <code>&lt;article&gt;&lt;/article&gt;</code> 中。</p>
-<p><code>.html</code> 文档的 <code>&lt;body&gt;&lt;/body&gt;</code>  元素中的内容就是 <code>.md</code> 文档的内容。</p>
-<p>若想在 <code>.html</code> 文档中添加其它内容，可以在  <code>&lt;main&gt;&lt;/main&gt;</code> 中添加 <code>&lt;section&gt;&lt;/section&gt;</code> 元素，在  <code>&lt;section&gt;&lt;/section&gt;</code> 元素中添加非 <code>.md</code> 文档的内容，这样便于维护。</p>
-<p>元素内容如下：</p>
-<pre><code class='language-html' lang='html'>&lt;main id=&quot;main&quot;&gt;
+				</li>
+				<li>
+					<p>在文档中添加 <code>&lt;main&gt;&lt;/main&gt;</code> 元素，在 <code>&lt;main&gt;&lt;/main&gt;</code> 元素中添加
+						<code>&lt;article&gt;&lt;/article&gt;</code> 元素，将 <code>.html</code> 文档的
+						<code>&lt;body&gt;&lt;/body&gt;</code> 中的内容剪切到 <code>&lt;article&gt;&lt;/article&gt;</code> 中。</p>
+					<p><code>.html</code> 文档的 <code>&lt;body&gt;&lt;/body&gt;</code> 元素中的内容就是 <code>.md</code> 文档的内容。</p>
+					<p>若想在 <code>.html</code> 文档中添加其它内容，可以在 <code>&lt;main&gt;&lt;/main&gt;</code> 中添加
+						<code>&lt;section&gt;&lt;/section&gt;</code> 元素，在 <code>&lt;section&gt;&lt;/section&gt;</code> 元素中添加非
+						<code>.md</code> 文档的内容，这样便于维护。</p>
+					<p>元素内容如下：</p>
+					<pre><code class='language-html' lang='html'>&lt;main id=&quot;main&quot;&gt;
 	&lt;article id=&quot;article&quot;&gt;.md文档内容&lt;/article&gt;
     &lt;section&gt;其他内容&lt;/section&gt;
 &lt;/main&gt;
 </code></pre>
-</li>
-<li><p>紧接着  <code>&lt;main&gt;&lt;/main&gt;</code> 元素，添加 <code>&lt;footer&gt;&lt;/footer&gt;</code> 元素， <code>&lt;footer&gt;&lt;/footer&gt;</code> 是文档的底部元素。元素内容如下：</p>
-<pre><code class='language-html' lang='html'>&lt;footer id=&quot;footer&quot;&gt;这里的内容是由footer.js文件生成的&lt;/footer&gt;
+				</li>
+				<li>
+					<p>紧接着 <code>&lt;main&gt;&lt;/main&gt;</code> 元素，添加 <code>&lt;footer&gt;&lt;/footer&gt;</code> 元素，
+						<code>&lt;footer&gt;&lt;/footer&gt;</code> 是文档的底部元素。元素内容如下：</p>
+					<pre><code class='language-html' lang='html'>&lt;footer id=&quot;footer&quot;&gt;这里的内容是由footer.js文件生成的&lt;/footer&gt;
 </code></pre>
-</li>
+				</li>
 
-</ol>
-<h5>完成 <code>.html</code> 文档如下：</h5>
-<pre><code class='language-html' lang='html'>&lt;!doctype html&gt;
+			</ol>
+			<h5>完成 <code>.html</code> 文档如下：</h5>
+			<p>（ 文件 <code>文章 HTML 文件生成方法.html</code> 是由这个文档生成的 <code>.html</code> 文件 ）</p>
+			<pre><code class='language-html' lang='html'>&lt;!doctype html&gt;
 &lt;html&gt;
 
 &lt;head&gt;
-	&lt;title&gt;证券-开始&lt;/title&gt;
-	&lt;meta name=&quot;description&quot; content=&quot;证券-开始|荆棘之旅&quot;&gt;
+	&lt;title&gt;标题&lt;/title&gt;
+	&lt;meta name=&quot;description&quot; content=&quot;标题|其他描述&quot;&gt;
 	&lt;meta charset=&#39;UTF-8&#39;&gt;
 	&lt;meta name=&#39;viewport&#39; content=&#39;width=device-width initial-scale=1&#39;&gt;
 	&lt;meta http-equiv=&quot;Content-Language&quot; content=&quot;zh-cn&quot;&gt;
@@ -80,10 +95,9 @@
 
 &lt;body&gt;
 	&lt;header id=&quot;header&quot;&gt;
-		&lt;div class=&quot;title&quot;&gt;开始&lt;/div&gt;
+		&lt;h1 class=&quot;title&quot;&gt;标题&lt;/h1&gt;
 		&lt;nav class=&quot;nav&quot;&gt;
-			&lt;a href=&quot;/index.html&quot; class=&quot;nav-index&quot;&gt;首页，导航&lt;/a&gt;
-            &lt;a href=&quot;./html/index.html&quot;&gt;其他导航&lt;/a&gt;
+			&lt;a href=&quot;/index.html&quot; class=&quot;nav-index&quot;&gt;返回&lt;/a&gt;
 		&lt;/nav&gt;
 	&lt;/header&gt;
 	&lt;main id=&quot;main&quot;&gt;
@@ -95,9 +109,11 @@
 
 &lt;/html&gt;
 </code></pre>
-<p>&nbsp;</p>
-</article>
-</main>
-<footer id="footer">这里的内容是由footer.js文件生成的</footer>
+			<p>&nbsp;</p>
+		</article>
+		<section>其他内容</section>
+	</main>
+	<footer id="footer">这里的内容是由footer.js文件生成的</footer>
 </body>
+
 </html>

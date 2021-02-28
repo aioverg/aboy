@@ -4,8 +4,8 @@
 
    ```html
    <head>
-   	<title>文章 HTML 文件生成方法</title>
-   	<meta name="description" content="文章 HTML 文件生成方法|说明">
+   	<title>文章标题</title>
+   	<meta name="description" content="文章描述|文章描述">
    	<meta charset='UTF-8'>
    	<meta name='viewport' content='width=device-width initial-scale=1'>
    	<meta http-equiv="Content-Language" content="zh-cn">
@@ -23,12 +23,11 @@
    <header id="header">
        <div class="title">文章的标题</div>
        <nav class="nav">
-           <a href="/index.html" class="nav-index">首页，导航</a>
-           <a href="./html/index.html">其他导航</a>
+           <a href="/index.html" class="nav-index">返回</a>
        </nav>
    </header>
    ```
-
+   
 4. 在文档中添加 `<main></main>` 元素，在 `<main></main>` 元素中添加 `<article></article>` 元素，将 `.html` 文档的 `<body></body>` 中的内容剪切到 `<article></article>` 中。
 
    `.html` 文档的 `<body></body>`  元素中的内容就是 `.md` 文档的内容。
@@ -59,8 +58,8 @@
 <html>
 
 <head>
-	<title>证券-开始</title>
-	<meta name="description" content="证券-开始|荆棘之旅">
+	<title>标题</title>
+	<meta name="description" content="标题|其他描述">
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width initial-scale=1'>
 	<meta http-equiv="Content-Language" content="zh-cn">
@@ -71,10 +70,9 @@
 
 <body>
 	<header id="header">
-		<div class="title">开始</div>
+		<h1 class="title">标题</h1>
 		<nav class="nav">
-			<a href="/index.html" class="nav-index">首页，导航</a>
-            <a href="./html/index.html">其他导航</a>
+			<a href="/index.html" class="nav-index">返回</a>
 		</nav>
 	</header>
 	<main id="main">
