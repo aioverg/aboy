@@ -2,7 +2,7 @@ const articleData = {
   record: [ // record 文件夹文章链接信息
     {
       name: '中作中的烦恼',
-      path: './record/record-trouble-at-work'
+      path: './record/record-trouble-at-work.html'
     },
     {
       name: '坐在空虚中',
