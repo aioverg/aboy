@@ -2,20 +2,20 @@
 
 const menuData = [
     { key: 'home', value: '首页'},
-    { key: 'HTML', value: 'HTML' },
-    { key: 'CSS', value: 'CSS' },
-    { key: 'JavaScript', value: 'JavaScript' },
-    { key: 'HTTP', value: 'HTTP' },
-    { key: 'Git', value: 'Git' },
-    { key: 'Node', value: 'Node' },
-    { key: 'React', value: 'React' },
-    { key: 'Vue', value: 'Vue' },
-    { key: 'Web', value: 'Web' },
+    { key: 'html', value: 'HTML' },
+    { key: 'css', value: 'CSS' },
+    { key: 'javascript', value: 'JavaScript' },
+    { key: 'http', value: 'HTTP' },
+    { key: 'git', value: 'Git' },
+    { key: 'node', value: 'Node' },
+    { key: 'react', value: 'React' },
+    { key: 'vue', value: 'Vue' },
+    { key: 'web', value: 'Web' },
 
 ]
 
 const articleData = { //目录
-    "HTML": [
+    html: [
 	    {
             name: "注意",
             path: "./fe/html/01.html"
@@ -43,7 +43,7 @@ const articleData = { //目录
         
 
     ],
-    "CSS":[
+    css:[
         {
             name: "注意",
             path: "./fe/css/01.html"
@@ -122,7 +122,7 @@ const articleData = { //目录
         },
 
     ],
-    "JavaScript": [
+    javascript: [
         {
             name: "ES6 - Class类",
             path: "./fe/javascript/01.html"
@@ -261,7 +261,7 @@ const articleData = { //目录
             path: "./fe/javascript/40.html"
         }
     ],
-    "HTTP": [
+    http: [
         {
             name: "网络基础",
             path: "./fe/http/01.html"
@@ -283,7 +283,7 @@ const articleData = { //目录
             path: "./fe/http/05.html"
         }
     ],
-    "Git": [
+    git: [
         {
             name: "常用命令",
             path: "./fe/git/01.html"
@@ -301,7 +301,7 @@ const articleData = { //目录
             path: "./fe/git/04.html"
         },
     ],
-    "Node": [
+    node: [
         {
             name: "npm简介",
             path: "./fe/node/01.html"
@@ -311,7 +311,7 @@ const articleData = { //目录
             path: "./fe/node/01.html"
         },
     ],
-    "React": [
+    react: [
         {
             name: "基本使用",
             path: "./fe/react/01.html"
@@ -345,7 +345,7 @@ const articleData = { //目录
             path: "./fe/react/10.html"
         },
     ],
-    "Vue": [
+    vue: [
         {
             name: "key属性与可复用",
             path: "./fe/vue/01.html"
@@ -411,7 +411,7 @@ const articleData = { //目录
             path: "./fe/vue/16.html"
         },
     ],
-    "Web": [
+    web: [
         {
             name: "Chrome开发者工具",
             path: "./fe/web/01.html"

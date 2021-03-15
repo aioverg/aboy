@@ -5,7 +5,7 @@ const menuMixin = { // 标签切换，翻页等混入
       currentMenuData: [], // 其它菜单文章列表
       currentPage: 1, // 当前页
       total: 1, // 页数总计
-      pageSize: 3, // 每页条数
+      pageSize: 10, // 每页条数
     }
   },
   methods: {
@@ -24,7 +24,7 @@ const menuMixin = { // 标签切换，翻页等混入
           if (total <= 1) {
             this.currentMenuData = menuData
           } else {
-            this.currentMenuData = record.slice(0, this.pageSize)
+            this.currentMenuData = menuData.slice(0, this.pageSize)
           }
         }
       }

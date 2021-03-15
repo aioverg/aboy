@@ -1,3 +1,10 @@
+const menuData = [
+  { key: 'home', value: '首页'},
+  { key: 'security', value: '证券' },
+  { key: 'record', value: '记录' },
+]
+
+
 const articleData = {
   record: [ // record 文件夹文章链接信息
     {

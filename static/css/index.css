@@ -57,6 +57,17 @@ h2 {
 .menucontent .artclelist {
   flex: 1;
 }
+.menucontent .artclelist div {
+  height: 35px;
+  line-height: 35px;
+}
+.menucontent .artclelist div:first-child {
+  padding-top: 20px;
+}
+
+.menucontent .artclelist div a:hover {
+  color: #597EF7;
+}
 .menucontent .pagebox { /* 翻页盒子 */
   text-align: right;
   color: #a19f9f;

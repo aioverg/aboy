@@ -18,12 +18,12 @@
 			<div class="title">荆棘之旅</div>
 			<nav class="nav">
 				<a href=".././index.html" class="nav-index">主站</a>
-				<span v-on:click="switchMenu('home')"
-					:style="{'color': (currentMenu == 'home' ? 'blue': '#424242')}">首页</span>
-				<span v-on:click="switchMenu('security')"
-					:style="{'color': (currentMenu == 'security' ? 'blue': '#424242')}">证券</span>
-				<span v-on:click="switchMenu('record')"
-					:style="{'color': (currentMenu == 'record' ? 'blue': '#424242')}">记录</span>
+				<span
+				  v-for="item in menuData"
+					:key="item.key"
+					v-on:click="switchMenu(item.key)"
+					:style="{'color': (currentMenu == item.key ? '#597EF7': '#424242')}"
+				>{{item.value}}</span>
 			</nav>
 		</header>
 
