@@ -5,7 +5,7 @@ const menuMixin = { // 标签切换，翻页等混入
       currentMenuData: [], // 其它菜单文章列表
       currentPage: 1, // 当前页
       total: 1, // 页数总计
-      pageSize: 10, // 每页条数
+      pageSize: 12, // 每页条数
     }
   },
   methods: {
