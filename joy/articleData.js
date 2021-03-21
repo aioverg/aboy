@@ -8,6 +8,12 @@ const menuData = [
 const articleData = {
   record: [ // record 文件夹文章链接信息
     {
+      name: '走在春分夜晚的路上',
+      path: './record/04-record-walking_on_the_night_of_the_vernal_equinox.html',
+      date: '2021-03-15 23:55',
+      weater: null
+    },
+    {
       name: '中作中的烦恼',
       path: './record/record-trouble-at-work.html'
     },
