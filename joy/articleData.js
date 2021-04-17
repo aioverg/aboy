@@ -81,10 +81,18 @@ const security = [ // security 文件夹内容
   },
   {
     name: '教程 - 股票的基本概念',
-    path: './security/Tutorial-stock-concept.html'
+    path: './security/Tutorial-stock_concept.html'
   },
   {
     name: '教程 - 股票的分类',
-    path: './security/Tutorial-stock-classify.html'
+    path: './security/Tutorial-stock_classify.html'
+  },
+  {
+    name: '教程 - 股市的概念',
+    path: './security/Tutorial-stock_market_concept.html'
+  },
+  {
+    name: '教程 - 其他概念',
+    path: './security/Tutorial-other_concept.html'
   },
 ]
