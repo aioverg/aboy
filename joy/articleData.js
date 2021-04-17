@@ -70,9 +70,21 @@ const record = [ // record 文件夹文章链接信息
   },
 ]
 
-const security = [
+const security = [ // security 文件夹内容
   {
-    name: '开始',
-    path: './security/security-start.html'
-  }
+    name: '教程 - 开始',
+    path: './security/Tutorial-start.html'
+  },
+  {
+    name: '教程 - 股票交易费用',
+    path: './security/Tutorial-service_charge.html'
+  },
+  {
+    name: '教程 - 股票的基本概念',
+    path: './security/Tutorial-stock-concept.html'
+  },
+  {
+    name: '教程 - 股票的分类',
+    path: './security/Tutorial-stock-classify.html'
+  },
 ]
