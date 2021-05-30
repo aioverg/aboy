@@ -23,7 +23,6 @@
 
 - 17326020603
 - 13750892614
-
 - QQ - 1010998682 - 密码一(英文混合数字)
 - QQ - 921075460 - (已注销，留用)
 - Outlook - aioverg@outlook.com - 密码二(英文大小写混合数字) - 安全手机（2614）
@@ -37,6 +36,7 @@
 - 百度云服务器：实例 - aioverg - 密码一@
 - [学信网](https://account.chsi.com.cn/) - 手机0603 / 身份证 - 密码一（英文混合数字加@） - 安全邮箱 1010998682@qq.com
 - 百度 - aioverg | aioverg@outlook.com | 13750892614 - 密码一
+- NVIDIA账户 - aioverg@outlook.com - 密码一（英文混合数字加@）
 
 ##### other
 
