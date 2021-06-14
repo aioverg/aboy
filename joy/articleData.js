@@ -63,9 +63,29 @@ const articleData = {
     },
   ],
   security: [ // security 文件夹文章链接信息
+    // {
+    //   name: '',
+    //   path: './security/start.html'
+    // },
+    {
+      name: '其他概念',
+      path: './security/other_concept.html'
+    },
+    {
+      name: '关于股市的概念',
+      path: './security/stock_market_concept.html'
+    },
+    {
+      name: '股票的基本概念',
+      path: './security/stock_concept.html'
+    },
+    {
+      name: '股票交易手续费',
+      path: './security/service_charge.html'
+    },
     {
       name: '开始',
-      path: './security/security-start.html'
+      path: './security/start.html'
     },
   ]
 }
