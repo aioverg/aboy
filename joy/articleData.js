@@ -8,91 +8,64 @@ const menuData = [
 const articleData = {
   record: [ // record 文件夹文章链接信息
     {
+      name: '无聊的',
+      path: './record/boring.html',
+      date: '2021-03-15 23:55',
+      weater: null
+    },
+    {
+      name: '专一',
+      path: './record/undivided.html',
+      date: '2021-03-15 23:55',
+      weater: null
+    },
+    {
+      name: '了无牵挂',
+      path: './record/heart_is_empty.html',
+      date: '2021-03-15 23:55',
+      weater: null
+    },
+    {
+      name: '坎',
+      path: './record/rough.html',
+      date: '2021-03-15 23:55',
+      weater: null
+    },
+    {
+      name: '无题',
+      path: './record/no_title.html',
+      date: '2021-03-15 23:55',
+      weater: null
+    },
+    {
+      name: '理发',
+      path: './record/haircut.html',
+      date: '2021-03-15 23:55',
+      weater: null
+    },
+    {
       name: '走在春分夜晚的路上',
-      path: './record/04-record-walking_on_the_night_of_the_vernal_equinox.html',
+      path: './record/walking_on_the_night_of_the_vernal_equinox.html',
       date: '2021-03-15 23:55',
       weater: null
     },
     {
       name: '中作中的烦恼',
-      path: './record/record-trouble-at-work.html'
+      path: './record/trouble_at_work.html'
     },
     {
       name: '坐在空虚中',
-      path: './record/record-sit-in-emptiness.html'
+      path: './record/sit_in_emptiness.html'
     },
     {
       name: '饥饿',
-      path: './record/record-hunger.html'
+      path: './record/hunger.html'
     },
   ],
-  security: [
+  security: [ // security 文件夹文章链接信息
     {
       name: '开始',
       path: './security/security-start.html'
     },
   ]
 }
-
-
-const record = [ // record 文件夹文章链接信息
-  {
-    name: '饥饿',
-    path: './record/record-hunger.html'
-  },
-  {
-    name: '饥饿1',
-    path: './record/record-hunger.html'
-  },
-  {
-    name: '饥饿2',
-    path: './record/record-hunger.html'
-  },
-  {
-    name: '饥饿3',
-    path: './record/record-hunger.html'
-  },
-  {
-    name: '饥饿4',
-    path: './record/record-hunger.html'
-  },
-  {
-    name: '饥饿5',
-    path: './record/record-hunger.html'
-  },
-  {
-    name: '饥饿6',
-    path: './record/record-hunger.html'
-  },
-  {
-    name: '饥饿7',
-    path: './record/record-hunger.html'
-  },
-]
-
-const security = [ // security 文件夹内容
-  {
-    name: '教程 - 开始',
-    path: './security/Tutorial-start.html'
-  },
-  {
-    name: '教程 - 股票交易费用',
-    path: './security/Tutorial-service_charge.html'
-  },
-  {
-    name: '教程 - 股票的基本概念',
-    path: './security/Tutorial-stock_concept.html'
-  },
-  {
-    name: '教程 - 股票的分类',
-    path: './security/Tutorial-stock_classify.html'
-  },
-  {
-    name: '教程 - 股市的概念',
-    path: './security/Tutorial-stock_market_concept.html'
-  },
-  {
-    name: '教程 - 其他概念',
-    path: './security/Tutorial-other_concept.html'
-  },
-]
