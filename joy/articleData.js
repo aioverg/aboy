@@ -8,6 +8,12 @@ const menuData = [
 const articleData = {
   record: [ // record 文件夹文章链接信息
     {
+      name: '美好',
+      path: './record/fragrnt.html',
+      date: '2021-06-16 03:00',
+      weater: 'rain'
+    },
+    {
       name: '无聊的',
       path: './record/boring.html',
       date: '2021-03-15 23:55',
