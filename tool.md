@@ -37,6 +37,7 @@
 - [学信网](https://account.chsi.com.cn/) - 手机0603 / 身份证 - 密码一（英文混合数字加@） - 安全邮箱 1010998682@qq.com
 - 百度 - aioverg | aioverg@outlook.com | 13750892614 - 密码一
 - NVIDIA账户 - aioverg@outlook.com - 密码一（英文混合数字加@）
+- 深圳证券交易所 - 17326020603 - 密码一（英文混合数字加@）
 
 ##### other
 
